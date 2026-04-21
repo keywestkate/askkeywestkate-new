@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Palette — modern editorial, warm-white, near-black, Gulf-water accent */
+  --color-paper: #f7f3ec;
+  --color-paper-soft: #efeae0;
+  --color-paper-warm: #e7dfd1;
+
+  --color-ink-950: #0a0a0a;
+  --color-ink-900: #141414;
+  --color-ink-800: #1f1f1f;
+  --color-ink-600: #555555;
+  --color-ink-500: #767676;
+  --color-ink-300: #b7b2aa;
+  --color-ink-200: #d8d3c8;
+
+  /* Gulf flats water — the single accent */
+  --color-gulf-100: #d8e6e4;
+  --color-gulf-300: #9cbfbe;
+  --color-gulf-500: #6a9a9b;
+  --color-gulf-700: #3f6f72;
+
+  /* Font stacks — wired to next/font variables */
+  --font-display: var(--font-display-tight), ui-sans-serif, system-ui,
+    -apple-system, "Inter Tight", Inter, sans-serif;
+  --font-sans: var(--font-body-sans), ui-sans-serif, system-ui, -apple-system,
+    Inter, "Helvetica Neue", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink-950);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* Display type — oversized, tight, modern editorial */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  font-weight: 600;
+}
+
+/* Subtle eyebrow label */
+.eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--color-ink-600);
+}
+
+/* Vertical stat label */
+.stat-label {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+/* Used by hero while photo is missing */
+.hero-placeholder {
+  background:
+    radial-gradient(
+      1400px 700px at 75% 40%,
+      rgba(106, 154, 155, 0.25),
+      transparent 65%
+    ),
+    radial-gradient(
+      900px 800px at 15% 90%,
+      rgba(231, 223, 209, 0.9),
+      transparent 60%
+    ),
+    linear-gradient(170deg, #e7dfd1 0%, #d8e6e4 60%, #9cbfbe 100%);
+}
+
+/* Circular play button animation */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spinSlow 22s linear infinite;
+}
+
+/* Soft fade-in-up on scroll target */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow {
+    animation: none;
+  }
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
 }
