@@ -64,8 +64,11 @@ export function Footer() {
             © {new Date().getFullYear()} Kate Baldwin · Bluescape Real Estate
             · FL #SL3428748
           </div>
-          <div className="md:text-right">
-            Equal Housing Opportunity
+          <div className="flex items-center gap-6 md:justify-end">
+            <span>Equal Housing Opportunity</span>
+            <Link href="/login" className="text-ink-400 hover:text-ink-600 transition-colors">
+              Client Login
+            </Link>
           </div>
         </div>
       </div>
