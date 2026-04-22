@@ -3,11 +3,8 @@ import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { VideoCard } from "@/components/VideoCard";
-import { VideoBlock } from "@/components/VideoBlock";
 
 const WATERFRONT = "/images/lifestyle/waterfront";
-const HERO_VIDEO =
-  "/videos/lifestyle/key-west-sunset-kate-baldwin-real-estate-seven-mile-bridge.mp4";
 const FEATURED = [
   `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-1.jpg`,
   `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-10.jpg`,
@@ -81,6 +78,33 @@ export default function Home() {
           <source src="/api/video/lifestyle/islamorada.mp4" type="video/mp4" />
         </video>
 
+        {/* Left-side headline */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-8 md:px-16">
+          <div className="mx-auto max-w-[1600px]">
+            <h1 className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.92] tracking-[-0.04em] text-paper [text-shadow:0_2px_24px_rgba(0,0,0,0.45)]">
+              Selling a<br />lifestyle.
+            </h1>
+            <p className="mt-6 max-w-sm text-[1rem] uppercase tracking-[0.12em] font-semibold text-paper [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+              You don&rsquo;t move to the Keys for a house.<br />
+              You move for the life waiting out your back door.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href="/buy"
+                className="inline-flex items-center gap-3 bg-paper px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 transition hover:bg-gulf-100"
+              >
+                Browse listings &rarr;
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 border border-paper/60 px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-paper transition hover:bg-paper/10"
+              >
+                Start a conversation
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom row: VideoCard · CTA · Quote */}
         <div className="absolute inset-x-0 bottom-8 px-8 md:bottom-10 md:px-12">
           <div className="mx-auto flex max-w-[1600px] items-end justify-between gap-6">
@@ -96,7 +120,7 @@ export default function Home() {
             </Link>
 
             {/* Quote — bottom right */}
-            <p className="hidden max-w-[22rem] text-right text-[0.82rem] leading-relaxed text-paper/75 md:block">
+            <p className="hidden max-w-[22rem] text-right text-[0.82rem] leading-relaxed text-paper [text-shadow:0_1px_6px_rgba(0,0,0,0.5)] md:block">
               A home on the water is a posture, not a purchase &mdash; a way of
               standing in the world that you&rsquo;ll feel every morning.
             </p>

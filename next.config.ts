@@ -3,7 +3,10 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
   turbopack: {
-    root: path.join(__dirname),
+    root: path.resolve(__dirname),
+  },
+  images: {
+    unoptimized: true,
   },
 };
 
