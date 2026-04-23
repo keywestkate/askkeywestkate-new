@@ -3,6 +3,7 @@ export type Intent = "buying" | "selling" | "both" | "browsing";
 export interface BuyerState {
   regions: string[];
   islands: string[];
+  propertyTypes: string[];
   priceMin: string;
   priceMax: string;
   bedroomsMin: number | null;
@@ -101,6 +102,7 @@ export const KEYS_REGIONS = [
 export const INITIAL_BUYER_STATE: BuyerState = {
   regions: [],
   islands: [],
+  propertyTypes: [],
   priceMin: "",
   priceMax: "",
   bedroomsMin: null,

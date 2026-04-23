@@ -97,6 +97,7 @@ export async function completeOnboarding(
           {
             user_id: user.id,
             islands: buyer.islands.length > 0 ? buyer.islands : null,
+            property_types: buyer.propertyTypes.length > 0 ? buyer.propertyTypes : null,
             price_min: buyer.priceMin ? parseInt(buyer.priceMin, 10) : null,
             price_max: buyer.priceMax ? parseInt(buyer.priceMax, 10) : null,
             bedrooms_min: buyer.bedroomsMin,

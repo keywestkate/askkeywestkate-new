@@ -215,6 +215,7 @@ export default function OnboardingPage() {
         {currentStepId === "buyer_matters" && (
           <StepBuyerMatters
             buyer={state.buyer}
+            selectedIslands={state.buyer.islands}
             onChange={(updates) =>
               setState((prev) => ({ ...prev, buyer: { ...prev.buyer, ...updates } }))
             }

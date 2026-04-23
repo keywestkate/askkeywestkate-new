@@ -9,21 +9,22 @@ export function StepIntro({ onStart }: Props) {
     <div>
       <div className="eyebrow mb-6 text-ink-400">Before we start</div>
       <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.92] text-ink-950">
-        Three minutes.<br />Then we&rsquo;re off.
+        This is a process.<br />Let&rsquo;s enjoy it.
       </h1>
 
       <div className="mt-8 max-w-xl space-y-5">
         <p className="text-base leading-relaxed text-ink-700">
-          The more honest you are about what you want — and what you might love
-          that you don&rsquo;t know you want yet — the better I can find it for
-          you. The questions are specific because the homes I&rsquo;ll send you
-          will be too.
+          I know this is a lot to ask up front. But it&rsquo;s how I can send
+          you properties that actually fit your life — not just whatever matches
+          a price filter. Areas can be tricky. If you don&rsquo;t know the Keys
+          yet, no problem — that&rsquo;s what I&rsquo;m here for.
         </p>
-        <p className="text-base leading-relaxed text-ink-700">
-          You&rsquo;ll get listings the moment they hit the market, market
-          reports for the islands you care about, and a quiet inbox the rest of
-          the time.
+        <p className="text-sm italic leading-relaxed text-ink-700">
+          Together, we&rsquo;ll find the perfect fit — the right home, the right
+          island. This isn&rsquo;t a game. It&rsquo;s a process. And we&rsquo;ll
+          enjoy it.
         </p>
+        <p className="text-sm italic text-ink-600">&mdash; Kate</p>
       </div>
 
       <div className="mt-12">

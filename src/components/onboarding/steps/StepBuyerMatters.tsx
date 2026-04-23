@@ -6,7 +6,24 @@ import { Chip } from "../Chip";
 interface Props {
   buyer: BuyerState;
   onChange: (updates: Partial<BuyerState>) => void;
+  selectedIslands: string[];
 }
+
+const PROPERTY_STYLES = [
+  "Single Family",
+  "Condo",
+  "Townhouse",
+  "Half Duplex",
+  "Duplex",
+  "Multi-Units",
+  "Condotel",
+  "Mobile Home",
+  "Off Shore Island",
+  "PreConstruction",
+  "Under Construction",
+  "Fractional Ownership",
+  "Open to anything",
+];
 
 const HOME_FEATURES = [
   "Dockage",
@@ -30,7 +47,14 @@ const BOAT_OPTIONS: { value: BuyerState["hasBoat"]; label: string }[] = [
   { value: "plan", label: "Plan to get one" },
 ];
 
-export function StepBuyerMatters({ buyer, onChange }: Props) {
+export function StepBuyerMatters({ buyer, onChange, selectedIslands }: Props) {
+  function togglePropertyType(style: string) {
+    const next = buyer.propertyTypes.includes(style)
+      ? buyer.propertyTypes.filter((s) => s !== style)
+      : [...buyer.propertyTypes, style];
+    onChange({ propertyTypes: next });
+  }
+
   function toggleMustHave(item: string) {
     const next = buyer.mustHaves.includes(item)
       ? buyer.mustHaves.filter((h) => h !== item)
@@ -55,6 +79,23 @@ export function StepBuyerMatters({ buyer, onChange }: Props) {
 
       <div className="mt-10 space-y-10">
         <div>
+          <div className="eyebrow mb-2 text-ink-400">Property style</div>
+          <p className="mb-4 text-sm text-ink-600">
+            Pick anything that could work — open to everything is fine too.
+          </p>
+          <div className="flex flex-wrap gap-2.5">
+            {PROPERTY_STYLES.map((style) => (
+              <Chip
+                key={style}
+                label={style}
+                selected={buyer.propertyTypes.includes(style)}
+                onClick={() => togglePropertyType(style)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-ink-200 pt-10">
           <div className="eyebrow mb-4 text-ink-400">The home</div>
           <div className="flex flex-wrap gap-2.5">
             {HOME_FEATURES.map((f) => (
@@ -146,6 +187,14 @@ export function StepBuyerMatters({ buyer, onChange }: Props) {
                 </div>
               </div>
             </div>
+          )}
+
+          {showBoatDetails && selectedIslands.includes("Key West") && (
+            <p className="mt-6 border-l-2 border-gulf-700 pl-4 text-sm italic leading-relaxed text-ink-600">
+              One more Key West note — most homes there don&rsquo;t have dockage.
+              You&rsquo;ll likely need a marina slip for your boat. We can talk
+              through marina options when we connect.
+            </p>
           )}
         </div>
       </div>

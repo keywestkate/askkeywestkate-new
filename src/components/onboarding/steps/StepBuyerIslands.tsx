@@ -81,6 +81,14 @@ export function StepBuyerIslands({ buyer, onChange }: Props) {
           No problem — Kate will reach out to talk through the best fit for you.
         </p>
       )}
+
+      {buyer.islands.includes("Key West") && (
+        <p className="mt-8 border-l-2 border-gulf-700 pl-4 text-sm italic leading-relaxed text-ink-600">
+          Heads up — open-water homes in Key West are very rare. If open water
+          matters to you, we&rsquo;ll also want to look at the Lower Keys. Just
+          a local note.
+        </p>
+      )}
     </div>
   );
 }
