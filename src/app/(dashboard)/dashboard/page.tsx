@@ -14,8 +14,16 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login");
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name, onboarding_completed")
+    .eq("id", user.id)
+    .single();
+
+  if (!profile?.onboarding_completed) redirect("/onboarding");
+
   const displayName =
-    user.user_metadata?.full_name ?? user.email ?? "there";
+    profile?.full_name ?? user.user_metadata?.full_name ?? user.email ?? "there";
 
   return (
     <main className="min-h-screen bg-paper text-ink-950">
