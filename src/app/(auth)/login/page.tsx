@@ -1,14 +1,19 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useActionState } from "react";
+import { useSearchParams } from "next/navigation";
 import { login } from "../actions";
-import type { Metadata } from "next";
-
-// Note: metadata export is not used in client components — set it in a parent
-// layout or use a generateMetadata function if needed.
 
 const initialState = { error: null };
+
+function ReturnToField() {
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo") ?? "";
+  if (!returnTo) return null;
+  return <input type="hidden" name="returnTo" value={returnTo} />;
+}
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, initialState);
@@ -32,6 +37,9 @@ export default function LoginPage() {
       {/* Right — form */}
       <div className="md:col-span-5 md:col-start-8">
         <form action={formAction} className="flex flex-col gap-6">
+          <Suspense fallback={null}>
+            <ReturnToField />
+          </Suspense>
 
           {state?.error && (
             <p className="text-sm italic text-ink-800 border-l-2 border-gulf-700 pl-4">

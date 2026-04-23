@@ -7,12 +7,22 @@ import type { OnboardingState } from "@/components/onboarding/types";
 export async function completeOnboarding(
   state: OnboardingState
 ): Promise<{ error: string } | void> {
+  console.log("[completeOnboarding] ACTION INVOKED — intent:", state.intent);
+
   const supabase = await createClient();
 
   const {
     data: { user },
     error: authError,
   } = await supabase.auth.getUser();
+
+  console.log("[completeOnboarding] getUser result:", {
+    userId: user?.id ?? null,
+    userEmail: user?.email ?? null,
+    hasAuthError: !!authError,
+    authErrorMessage: authError?.message ?? null,
+    authErrorStatus: authError?.status ?? null,
+  });
 
   if (!user) {
     // Log the full auth state server-side so we can see what happened.
@@ -40,13 +50,19 @@ export async function completeOnboarding(
             ? "both"
             : "browsing";
 
-    const { error: profileError } = await supabase
+    console.log("[completeOnboarding] step 1 — updating profile for user:", user.id);
+    const { error: profileError, count: profileCount } = await supabase
       .from("profiles")
       .update({
         user_type: userType,
         onboarding_completed: true,
       })
       .eq("id", user.id);
+
+    console.log("[completeOnboarding] step 1 result:", {
+      profileError: profileError?.message ?? null,
+      rowsUpdated: profileCount ?? "count not returned",
+    });
 
     if (profileError) throw profileError;
 
@@ -74,6 +90,7 @@ export async function completeOnboarding(
             : buyer.regions.join(", ") || null,
       });
 
+      console.log("[completeOnboarding] step 2 — upserting buyer_preferences");
       const { error: buyerError } = await supabase
         .from("buyer_preferences")
         .upsert(
@@ -94,6 +111,10 @@ export async function completeOnboarding(
           { onConflict: "user_id" }
         );
 
+      console.log("[completeOnboarding] step 2 result:", {
+        buyerError: buyerError?.message ?? null,
+      });
+
       if (buyerError) throw buyerError;
     }
 
@@ -103,6 +124,7 @@ export async function completeOnboarding(
         ? Math.round(parseFloat(seller.estimatedValue) * 100)
         : null;
 
+      console.log("[completeOnboarding] step 3 — inserting seller_properties, estimatedCents:", estimatedCents);
       const { error: sellerError } = await supabase
         .from("seller_properties")
         .insert({
@@ -118,6 +140,11 @@ export async function completeOnboarding(
             ? JSON.stringify({ favorite_memory: seller.favoriteMemory })
             : null,
         });
+
+      console.log("[completeOnboarding] step 3 result:", {
+        sellerError: sellerError?.message ?? null,
+        sellerErrorCode: (sellerError as { code?: string } | null)?.code ?? null,
+      });
 
       if (sellerError) throw sellerError;
     }
@@ -145,15 +172,21 @@ export async function completeOnboarding(
       });
     }
 
+    console.log("[completeOnboarding] step 4 — newsletter subscriptionRows:", subscriptionRows.length);
     if (subscriptionRows.length > 0) {
       const { error: newsletterError } = await supabase
         .from("newsletter_subscriptions")
         .upsert(subscriptionRows, { onConflict: "user_id,island" });
 
+      console.log("[completeOnboarding] step 4 result:", {
+        newsletterError: newsletterError?.message ?? null,
+      });
+
       if (newsletterError) throw newsletterError;
     }
 
     // ── 5. Activity log ────────────────────────────────────────────────────
+    console.log("[completeOnboarding] step 5 — inserting activity_log");
     await supabase.from("activity_log").insert({
       user_id: user.id,
       event_type: "onboarding_completed",
@@ -170,5 +203,6 @@ export async function completeOnboarding(
     return { error: message };
   }
 
-  redirect("/dashboard");
+  console.log("[completeOnboarding] all steps succeeded — redirecting to /onboarding/complete");
+  redirect("/onboarding/complete");
 }

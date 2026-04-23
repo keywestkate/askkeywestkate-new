@@ -35,14 +35,17 @@ export async function updateSession(request: NextRequest) {
     pathname.startsWith("/dashboard") || pathname.startsWith("/onboarding");
   const isAuthRoute =
     pathname.startsWith("/login") || pathname.startsWith("/signup");
+  // /check-your-email is always public — no redirect in either direction
+  const isPublic = pathname.startsWith("/check-your-email");
 
   if (!user && isProtected) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
+    loginUrl.searchParams.set("returnTo", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  if (user && isAuthRoute) {
+  if (user && isAuthRoute && !isPublic) {
     const onboardingUrl = request.nextUrl.clone();
     onboardingUrl.pathname = "/onboarding";
     return NextResponse.redirect(onboardingUrl);

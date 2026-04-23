@@ -62,6 +62,11 @@ export function StepBuyerRange({ buyer, onChange }: Props) {
               />
             </div>
           </div>
+          <p className="mt-4 text-sm italic leading-relaxed text-ink-500">
+            Kate&rsquo;s stretch: I&rsquo;ll also show you homes up to 33%
+            above your max. Sometimes the right home is right above your number,
+            and you&rsquo;d never see it otherwise.
+          </p>
         </div>
 
         <div>

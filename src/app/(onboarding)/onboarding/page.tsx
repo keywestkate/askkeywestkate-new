@@ -11,6 +11,7 @@ import {
   INITIAL_NEWSLETTER_STATE,
 } from "@/components/onboarding/types";
 import { StepProgress } from "@/components/onboarding/StepProgress";
+import { StepIntro } from "@/components/onboarding/steps/StepIntro";
 import { StepIntent } from "@/components/onboarding/steps/StepIntent";
 import { StepBuyerIslands } from "@/components/onboarding/steps/StepBuyerIslands";
 import { StepBuyerRange } from "@/components/onboarding/steps/StepBuyerRange";
@@ -34,12 +35,14 @@ const INITIAL_STATE: OnboardingState = {
 export default function OnboardingPage() {
   const [state, setState] = useState<OnboardingState>(INITIAL_STATE);
   const [stepIndex, setStepIndex] = useState(0);
+  // showIntro = true until the user clicks "Let's start →"
+  const [showIntro, setShowIntro] = useState(true);
   const [visible, setVisible] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  // Gate that prevents saving before the initial restore from localStorage runs.
-  // Without this the very first save effect would overwrite the stored draft.
+  // Gate that prevents the save effect from firing before the initial
+  // localStorage restore has run — otherwise it would overwrite the draft.
   const restoredRef = useRef(false);
 
   // ── Restore from localStorage on mount ──────────────────────────────────
@@ -50,13 +53,14 @@ export default function OnboardingPage() {
         const parsed = JSON.parse(raw) as {
           formState: OnboardingState;
           step: number;
+          introSeen?: boolean;
         };
         if (parsed.formState) {
           setState(parsed.formState);
-          // Clamp saved step to the sequence length for the restored intent
-          const maxStep =
-            getStepSequence(parsed.formState.intent).length - 1;
+          const maxStep = getStepSequence(parsed.formState.intent).length - 1;
           setStepIndex(Math.min(parsed.step ?? 0, maxStep));
+          // If they previously clicked "Let's start", skip the intro on restore
+          if (parsed.introSeen) setShowIntro(false);
         }
       }
     } catch {
@@ -65,20 +69,22 @@ export default function OnboardingPage() {
     restoredRef.current = true;
   }, []);
 
-  // ── Persist to localStorage after every state/step change ───────────────
-  // The restoredRef guard prevents this from firing before the restore above
-  // completes, which would overwrite the saved draft with the empty initial state.
+  // ── Persist to localStorage after every meaningful change ────────────────
   useEffect(() => {
     if (!restoredRef.current) return;
     try {
       localStorage.setItem(
         DRAFT_KEY,
-        JSON.stringify({ formState: state, step: stepIndex })
+        JSON.stringify({
+          formState: state,
+          step: stepIndex,
+          introSeen: !showIntro,
+        })
       );
     } catch {
       // Ignore private-browsing or quota errors
     }
-  }, [state, stepIndex]);
+  }, [state, stepIndex, showIntro]);
 
   // ── Pre-populate newsletter island subscriptions when buyer islands change
   useEffect(() => {
@@ -140,13 +146,8 @@ export default function OnboardingPage() {
         setError(result.error);
         return;
       }
-      // On success the server action calls redirect("/dashboard").
-      // Clear the draft only after we know it succeeded (no error returned).
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch {
-        // ignore
-      }
+      // Server action redirects to /onboarding/complete on success.
+      // The complete page clears the draft via its own useEffect.
     });
   }
 
@@ -165,13 +166,28 @@ export default function OnboardingPage() {
 
   const continueLabel = isLast ? "Finish" : "Continue";
 
+  // ── Intro screen (pre-flow, no step counter) ─────────────────────────────
+  if (showIntro) {
+    return (
+      <div className="mx-auto max-w-2xl px-6 pb-28 pt-36 md:px-8 md:pt-44">
+        <div
+          className="transition-opacity duration-[180ms]"
+          style={{ opacity: visible ? 1 : 0 }}
+        >
+          <StepIntro onStart={() => setShowIntro(false)} />
+        </div>
+      </div>
+    );
+  }
+
+  // ── Multi-step flow ──────────────────────────────────────────────────────
   return (
     <div className="mx-auto max-w-2xl px-6 pb-28 pt-36 md:px-8 md:pt-44">
       <div
         className="transition-opacity duration-[180ms]"
         style={{ opacity: visible ? 1 : 0 }}
       >
-        {/* Step progress */}
+        {/* Step progress — counts the flow steps, not the intro */}
         <div className="mb-10">
           <StepProgress current={stepIndex + 1} total={steps.length} />
         </div>
