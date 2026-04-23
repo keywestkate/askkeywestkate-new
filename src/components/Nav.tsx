@@ -14,20 +14,27 @@ const DASHBOARD_LINKS = [
   { href: "/dashboard/favorites", label: "Favorites" },
 ];
 
+const ADMIN_LINKS = [
+  { href: "/admin", label: "Overview" },
+  { href: "/admin/clients", label: "Clients" },
+];
+
 type NavProps =
   | { theme?: "dark" | "light"; userEmail?: never; signout?: never }
-  | { theme: "dashboard"; userEmail?: string; signout: () => Promise<void> };
+  | { theme: "dashboard"; userEmail?: string; signout: () => Promise<void> }
+  | { theme: "admin"; userEmail?: string; signout: () => Promise<void> };
 
 export function Nav({ theme = "dark", userEmail: _userEmail, signout }: NavProps) {
   const light = theme === "light";
   const dashboard = theme === "dashboard";
+  const admin = theme === "admin";
   const textColor = light ? "text-paper" : "text-ink-950";
   const linkColor = light
     ? "text-paper/80 hover:text-paper"
     : "text-ink-800 hover:text-ink-950";
   const subColor = light ? "text-paper/60" : "text-ink-500";
 
-  const links = dashboard ? DASHBOARD_LINKS : PUBLIC_LINKS;
+  const links = admin ? ADMIN_LINKS : dashboard ? DASHBOARD_LINKS : PUBLIC_LINKS;
 
   return (
     <header className="absolute inset-x-0 top-0 z-30">
@@ -35,7 +42,7 @@ export function Nav({ theme = "dark", userEmail: _userEmail, signout }: NavProps
 
         {/* Left — wordmark */}
         <Link
-          href={dashboard ? "/dashboard" : "/"}
+          href={admin ? "/admin" : dashboard ? "/dashboard" : "/"}
           className={`flex items-center gap-3 ${textColor}`}
           aria-label="Kate Baldwin — Home"
         >
@@ -43,7 +50,7 @@ export function Nav({ theme = "dark", userEmail: _userEmail, signout }: NavProps
             Kate&nbsp;Baldwin
           </span>
           <span className={`hidden text-[0.62rem] uppercase tracking-[0.28em] md:inline ${subColor}`}>
-            {dashboard ? "Portal" : "Bluescape"}
+            {admin ? "Admin" : dashboard ? "Portal" : "Bluescape"}
           </span>
         </Link>
 
@@ -62,7 +69,7 @@ export function Nav({ theme = "dark", userEmail: _userEmail, signout }: NavProps
 
         {/* Right — contact / sign-out + hamburger */}
         <div className="flex items-center justify-end gap-6">
-          {dashboard ? (
+          {(dashboard || admin) ? (
             <form action={signout}>
               <button
                 type="submit"

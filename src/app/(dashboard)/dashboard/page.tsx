@@ -22,6 +22,9 @@ export default async function DashboardPage() {
 
   if (!profile?.onboarding_completed) redirect("/onboarding");
 
+  // Kate goes to the admin panel instead of the client dashboard
+  if (user.email?.toLowerCase() === "kate@keywestkate.com") redirect("/admin");
+
   const displayName =
     profile?.full_name ?? user.user_metadata?.full_name ?? user.email ?? "there";
 
