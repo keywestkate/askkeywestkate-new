@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
+import { PortalCTA } from "@/components/PortalCTA";
 
 const ABOUT_HERO =
   "/images/lifestyle/waterfront/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-11.jpg";
@@ -203,6 +204,7 @@ export default function About() {
         </div>
       </section>
 
+      <PortalCTA />
       <ContactBlock
         title="Coffee, a walk-through, or a phone call."
         accent="Pick the one that suits you."

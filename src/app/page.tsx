@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { PortalCTA } from "@/components/PortalCTA";
 import { VideoCard } from "@/components/VideoCard";
 
 const WATERFRONT = "/images/lifestyle/waterfront";
@@ -391,6 +392,7 @@ export default function Home() {
         </div>
       </section>
 
+      <PortalCTA />
       <Footer />
     </main>
   );

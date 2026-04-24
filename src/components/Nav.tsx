@@ -79,12 +79,20 @@ export function Nav({ theme = "dark", userEmail: _userEmail, signout }: NavProps
               </button>
             </form>
           ) : (
-            <Link
-              href="/contact"
-              className={`hidden text-[0.78rem] uppercase tracking-[0.22em] transition-colors md:inline ${linkColor}`}
-            >
-              Contact
-            </Link>
+            <div className="hidden items-center gap-6 md:flex">
+              <Link
+                href="/contact"
+                className={`text-[0.78rem] uppercase tracking-[0.22em] transition-colors ${linkColor}`}
+              >
+                Contact
+              </Link>
+              <Link
+                href="/login"
+                className={`text-[0.78rem] uppercase tracking-[0.22em] transition-colors ${subColor} hover:${textColor}`}
+              >
+                Log&nbsp;in?
+              </Link>
+            </div>
           )}
           <button
             type="button"

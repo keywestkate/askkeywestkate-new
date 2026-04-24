@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
+import { PortalCTA } from "@/components/PortalCTA";
 
 const WATERFRONT = "/images/lifestyle/waterfront";
 const HERO_PHOTO = `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-5.jpg`;
@@ -203,6 +204,7 @@ export default function Buy() {
         </div>
       </section>
 
+      <PortalCTA />
       <ContactBlock
         title="Tell me what your Saturday looks like."
         accent="I&rsquo;ll show you the home that fits it."

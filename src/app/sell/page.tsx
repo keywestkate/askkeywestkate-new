@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
+import { PortalCTA } from "@/components/PortalCTA";
 
 const SELL_HERO =
   "/images/lifestyle/waterfront/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-15.jpg";
@@ -165,6 +166,7 @@ export default function Sell() {
         </div>
       </section>
 
+      <PortalCTA />
       <ContactBlock
         title="Ready to talk about what your home is worth?"
         accent="Start here."
