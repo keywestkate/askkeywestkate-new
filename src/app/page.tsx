@@ -76,7 +76,7 @@ export default function Home() {
           poster="/images/hero-poster.jpg"
           loop
         >
-          <source src="/api/video/lifestyle/islamorada.mp4" type="video/mp4" />
+          <source src="/api/video/lifestyle/hero-keywest.mp4" type="video/mp4" />
         </video>
 
         {/* Left-side headline */}
