@@ -20,8 +20,8 @@
   --color-gulf-500: #44A6B5;     /* Moonstone */
   --color-gulf-700: #004554;     /* Midnight Green */
 
-  /* Font stacks — Fraunces for display/headlines, Modern Serif for body */
-  --font-display: var(--font-fraunces), Georgia, ui-serif, serif;
+  /* Font stacks — Modern Serif throughout */
+  --font-display: var(--font-modern-serif), Georgia, "Times New Roman", ui-serif, serif;
   --font-sans: var(--font-modern-serif), Georgia, "Times New Roman", ui-serif, serif;
 }
 
