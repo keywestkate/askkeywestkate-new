@@ -63,7 +63,7 @@ const JOURNAL = [
 
 export default function Home() {
   return (
-    <main className="bg-paper text-ink-950">
+    <main className="bg-white text-ink-950">
       <Nav theme="light" />
 
       {/* HERO — full-bleed video only */}
@@ -85,22 +85,21 @@ export default function Home() {
             <h1 className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.92] tracking-[-0.04em] text-paper [text-shadow:0_2px_24px_rgba(0,0,0,0.45)]">
               Selling a<br />lifestyle.
             </h1>
-            <p className="mt-6 max-w-sm text-[1rem] uppercase tracking-[0.12em] font-semibold text-paper [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
-              You don&rsquo;t move to the Keys for a house.<br />
-              You move for the life waiting out your back door.
+            <p className="mt-6 max-w-lg text-[clamp(1.1rem,2vw,1.5rem)] font-bold text-paper [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+              You don&rsquo;t move to the Keys for a house. You move for the life waiting out your back door.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/buy"
-                className="inline-flex items-center gap-3 bg-paper px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 transition hover:bg-gulf-100"
+                className="inline-flex items-center gap-3 bg-white px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 transition hover:bg-gulf-500 hover:text-white"
               >
                 Browse listings &rarr;
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-3 border border-paper/60 px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-paper transition hover:bg-paper/10"
+                className="inline-flex items-center gap-3 bg-white px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 transition hover:bg-gulf-500 hover:text-white"
               >
-                Start a conversation
+                Connect
               </Link>
             </div>
           </div>
@@ -129,64 +128,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT KATE — homepage teaser */}
-      <section className="px-8 py-28 md:px-12 md:py-36">
-        <div className="mx-auto grid max-w-[1600px] gap-16 md:grid-cols-12 md:items-center">
-          <div className="md:col-span-5">
-            <div className="eyebrow">About Kate</div>
-            <h2 className="mt-6 font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.035em] text-ink-950">
-              A Key West native.<br />
-              <span className="text-gulf-700">Local roots.<br />Global results.</span>
-            </h2>
-            <Link
-              href="/about"
-              className="mt-10 inline-flex items-center gap-3 text-[0.78rem] uppercase tracking-[0.22em] text-ink-950 underline-offset-8 hover:underline"
-            >
-              Read the full story &rarr;
-            </Link>
-          </div>
-          <div className="md:col-span-7">
-            <p className="text-base leading-relaxed text-ink-800 md:text-[1.05rem]">
-              As a Key West native with over 20 years of local business
-              experience, I provide a level of island expertise that is lived,
-              not learned. My career spans <strong>41 closings and $43.5M in
-              volume</strong> — built on waterfront estates, repeat clients, and
-              a deep knowledge of every key from Key West to Marathon.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-ink-800 md:text-[1.05rem]">
-              Currently a Luxury Specialist at Bluescape Real Estate, I focus
-              on the homes that match the life you actually want to live here —
-              on the water, close to the boat, with sunsets that never get old.
-            </p>
-            <div className="mt-12 grid grid-cols-3 gap-8 border-t border-ink-200 pt-10">
-              {[
-                { label: "Career Volume", value: "$43.5M+" },
-                { label: "Closings", value: "41" },
-                { label: "Avg. Sale", value: "$1.1M+" },
-              ].map((s) => (
-                <div key={s.label} className="flex flex-col gap-2">
-                  <span className="stat-label text-ink-500">{s.label}</span>
-                  <span className="font-display text-[2rem] leading-tight tracking-tight text-ink-950">
-                    {s.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* STATS STRIP */}
-      <section className="px-8 py-20 md:px-12 md:py-28">
+      <section className="bg-gulf-100 px-8 py-8 md:px-12 md:py-10">
         <div className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 border-t border-ink-200 pt-10 md:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-4">
             {[
-              { label: "Market", value: "Key West · Lower, Middle, Upper" },
-              { label: "Niche", value: "Waterfront · Boating · Fishing" },
+              { label: "Market", value: "Florida Keys Market" },
+              { label: "Niche", value: "Waterfront · History · Island Life" },
               { label: "Brokerage", value: "Bluescape Real Estate" },
               { label: "Promise", value: "Selling a lifestyle" },
             ].map((s) => (
-              <div key={s.label} className="flex flex-col gap-3">
+              <div key={s.label} className="flex flex-col gap-1.5">
                 <span className="stat-label text-ink-500">{s.label}</span>
                 <span className="font-display text-xl leading-tight text-ink-950 md:text-[1.6rem]">
                   {s.value}
@@ -197,8 +149,103 @@ export default function Home() {
         </div>
       </section>
 
+      {/* KATE — bold editorial intro */}
+      <section className="flex min-h-screen flex-col overflow-hidden bg-white md:flex-row">
+
+        {/* LEFT — photo bleeds to edge, fades into white on the right */}
+        <div className="group relative h-[55vh] w-full shrink-0 md:h-auto md:w-[50%]">
+          <Image
+            src="/images/kate/hero-ocean.png"
+            alt="Kate Baldwin, Key West luxury real estate agent"
+            fill
+            priority
+            className="object-cover object-top transition duration-700 group-hover:scale-[1.02]"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          {/* Fade — blends right edge of photo into white content */}
+          <div className="absolute inset-0 hidden bg-gradient-to-l from-white via-white/20 to-transparent md:block" />
+        </div>
+
+        {/* RIGHT — text, padded, centered vertically */}
+        <div className="flex w-full flex-col justify-center px-8 py-20 md:w-[50%] md:py-0 md:pl-16 md:pr-12 lg:pl-24 lg:pr-20">
+
+          <h2 className="font-display text-[clamp(2.8rem,6vw,5.5rem)] leading-[0.92] tracking-[-0.04em] text-ink-950">
+            Kate<br />Baldwin
+          </h2>
+
+          <p className="mt-5 font-display text-[clamp(1.4rem,2.5vw,2rem)] font-bold uppercase leading-snug tracking-wide text-gulf-700">
+            Luxury Real Estate &middot; Florida Keys &middot; Key West
+          </p>
+
+          <div className="mt-10 border-t border-ink-200 pt-10">
+            <div className="flex flex-wrap gap-x-12 gap-y-6">
+              {[
+                { value: "$43.5M+", label: "In Closings" },
+                { value: "41", label: "Homes Sold" },
+                { value: "20+", label: "Years in the Keys" },
+              ].map((s) => (
+                <div key={s.label} className="flex flex-col gap-1">
+                  <span className="font-display text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-tight text-ink-950">
+                    {s.value}
+                  </span>
+                  <span className="eyebrow text-ink-400">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <Link
+              href="/about"
+              className="inline-block bg-gulf-700 px-8 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-80"
+            >
+              Read my story &rarr;
+            </Link>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ABOUT KATE — centered menu style with monstera watermark */}
+      <section className="relative overflow-hidden bg-white px-8 py-36 md:px-12 md:py-48">
+        {/* Monstera leaf — centered watermark, multiply blend removes white bg */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <Image
+            src="/images/brand/monstera-leaf.png"
+            alt=""
+            width={700}
+            height={900}
+            aria-hidden="true"
+            className="h-full w-auto max-w-none object-contain opacity-55"
+            style={{ mixBlendMode: "multiply" }}
+          />
+        </div>
+
+        {/* Text — centered on top */}
+        <div className="relative mx-auto max-w-2xl text-center">
+          <div className="eyebrow text-ink-400">About Kate</div>
+          <h2 className="mt-6 font-display text-[clamp(2.8rem,6.5vw,5.5rem)] leading-[0.95] tracking-[-0.035em] text-ink-950">
+            A Key West native.
+            <br />
+            <span className="text-gulf-700">Local roots.</span>
+            <br />
+            <span className="text-gulf-700">Global results.</span>
+          </h2>
+          <div className="mt-10">
+            <Link
+              href="/about"
+              className="inline-block border-b border-ink-300 pb-1 text-[0.78rem] uppercase tracking-[0.22em] text-ink-500 transition-colors hover:border-ink-950 hover:text-ink-950"
+            >
+              Read the full story &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+
       {/* PHILOSOPHY — asymmetric, editorial */}
-      <section className="bg-paper-soft px-8 py-28 md:px-12 md:py-40">
+      <section className="bg-white px-8 py-28 md:px-12 md:py-40">
         <div className="mx-auto grid max-w-[1600px] gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="eyebrow">A note from Kate</div>
@@ -259,7 +306,7 @@ export default function Home() {
       </section>
 
       {/* FEATURED LISTINGS — editorial cards */}
-      <section className="bg-paper-soft px-8 py-28 md:px-12 md:py-36">
+      <section className="bg-white px-8 py-28 md:px-12 md:py-36">
         <div className="mx-auto max-w-[1600px]">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-xl">
@@ -358,7 +405,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT CTA — asymmetric, oversized */}
-      <section className="bg-ink-950 px-8 py-28 text-paper md:px-12 md:py-40">
+      <section className="bg-gulf-700 px-8 py-28 text-paper md:px-12 md:py-40">
         <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">
             <div className="eyebrow text-paper-warm">Let&rsquo;s talk</div>

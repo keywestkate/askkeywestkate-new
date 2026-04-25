@@ -21,7 +21,7 @@ const BENEFITS = [
 
 export function PortalCTA() {
   return (
-    <section className="bg-ink-950 px-8 py-28 md:px-12 md:py-36">
+    <section className="bg-gulf-700 px-8 py-28 md:px-12 md:py-36">
       <div className="mx-auto max-w-[1600px]">
 
         <div className="grid gap-16 md:grid-cols-12">

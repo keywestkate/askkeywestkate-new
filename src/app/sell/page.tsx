@@ -86,7 +86,7 @@ export default function Sell() {
           <div className="flex flex-col gap-3 md:items-end">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 bg-ink-950 px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-paper transition hover:bg-ink-800"
+              className="inline-flex items-center gap-3 bg-gulf-700 px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-paper transition hover:opacity-80"
             >
               Request a valuation &rarr;
             </Link>

@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const interTight = Inter_Tight({
-  variable: "--font-display-tight",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-body-sans",
-  subsets: ["latin"],
+const modernSerif = localFont({
+  src: [
+    { path: "../../public/fonts/ModernSerif.ttf", weight: "100 900", style: "normal" },
+    { path: "../../public/fonts/ModernSerif-Italic.ttf", weight: "100 900", style: "italic" },
+  ],
+  variable: "--font-modern-serif",
   display: "swap",
 });
 
@@ -41,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${interTight.variable} ${inter.variable} h-full antialiased`}
+      className={`${modernSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

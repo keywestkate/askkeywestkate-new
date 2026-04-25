@@ -8,7 +8,7 @@ export function ContactBlock({
   accent?: string;
 }) {
   return (
-    <section className="bg-ink-950 px-8 py-28 text-paper md:px-12 md:py-36">
+    <section className="bg-gulf-700 px-8 py-28 text-paper md:px-12 md:py-36">
       <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-12 md:items-end">
         <div className="md:col-span-8">
           <div className="eyebrow text-paper-warm">Let&rsquo;s talk</div>

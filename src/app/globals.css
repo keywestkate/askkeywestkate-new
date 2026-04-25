@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette — modern editorial, warm-white, near-black, Gulf-water accent */
-  --color-paper: #f7f3ec;
-  --color-paper-soft: #efeae0;
-  --color-paper-warm: #e7dfd1;
+  /* Palette — modern coastal, calm, tranquil ocean tones */
+  --color-paper: #ffffff;
+  --color-paper-soft: #E9F1F6;   /* Alice Blue — alternate section bg */
+  --color-paper-warm: #D3D0C8;   /* Timberwolf — warm neutral accent */
 
   --color-ink-950: #0a0a0a;
   --color-ink-900: #141414;
@@ -14,17 +14,15 @@
   --color-ink-300: #b7b2aa;
   --color-ink-200: #d8d3c8;
 
-  /* Gulf flats water — the single accent */
-  --color-gulf-100: #d8e6e4;
-  --color-gulf-300: #9cbfbe;
-  --color-gulf-500: #6a9a9b;
-  --color-gulf-700: #3f6f72;
+  /* Ocean palette — coastal accent scale */
+  --color-gulf-100: #E9F1F6;     /* Alice Blue */
+  --color-gulf-300: #B2D5E2;     /* Light Blue */
+  --color-gulf-500: #44A6B5;     /* Moonstone */
+  --color-gulf-700: #004554;     /* Midnight Green */
 
-  /* Font stacks — wired to next/font variables */
-  --font-display: var(--font-display-tight), ui-sans-serif, system-ui,
-    -apple-system, "Inter Tight", Inter, sans-serif;
-  --font-sans: var(--font-body-sans), ui-sans-serif, system-ui, -apple-system,
-    Inter, "Helvetica Neue", sans-serif;
+  /* Font stacks — custom Modern Serif throughout */
+  --font-display: var(--font-modern-serif), Georgia, "Times New Roman", ui-serif, serif;
+  --font-sans: var(--font-modern-serif), Georgia, "Times New Roman", ui-serif, serif;
 }
 
 html {
@@ -32,7 +30,7 @@ html {
 }
 
 body {
-  background: var(--color-paper);
+  background: #ffffff;
   color: var(--color-ink-950);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -41,12 +39,18 @@ body {
   font-feature-settings: "cv11", "ss01";
 }
 
-/* Display type — oversized, tight, modern editorial */
+/* All headings — bold Modern Serif */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Display type — oversized editorial headings */
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   line-height: 0.92;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Subtle eyebrow label */

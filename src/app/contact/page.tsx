@@ -96,7 +96,7 @@ export default function Contact() {
               <FieldArea label="Tell me about the life you&rsquo;re looking for" name="message" />
               <button
                 type="submit"
-                className="self-start bg-ink-950 px-8 py-4 text-[0.78rem] uppercase tracking-[0.22em] text-paper transition hover:bg-ink-800"
+                className="self-start bg-gulf-700 px-8 py-4 text-[0.78rem] uppercase tracking-[0.22em] text-paper transition hover:opacity-80"
               >
                 Send &rarr;
               </button>
