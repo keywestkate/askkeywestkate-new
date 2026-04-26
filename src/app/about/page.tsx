@@ -8,7 +8,7 @@ import { PortalCTA } from "@/components/PortalCTA";
 
 const ABOUT_HERO =
   "/images/lifestyle/waterfront/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-11.jpg";
-const KATE_PORTRAIT = "/images/kate/kate-baldwin-1.jpg";
+const KATE_PORTRAIT = "/images/kate/kate-baldwin-bio-real-estate.png";
 
 export const metadata: Metadata = {
   title: "About Kate",
