@@ -94,15 +94,15 @@ export default function About() {
       {/* STORY */}
       <section className="px-8 py-28 md:px-12 md:py-36">
         <div className="mx-auto grid max-w-[1600px] gap-16 md:grid-cols-12">
-          <div className="md:col-span-4">
+          <div className="flex flex-col md:col-span-4">
             <div className="eyebrow">The story</div>
-            <div className="mt-8 relative aspect-[4/5] w-full max-w-sm overflow-hidden bg-white">
+            <div className="relative mt-8 w-full flex-1 min-h-[600px] overflow-hidden bg-white">
               <Image
                 src={KATE_PORTRAIT}
                 alt="Kate Baldwin"
                 fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 400px"
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
           </div>
