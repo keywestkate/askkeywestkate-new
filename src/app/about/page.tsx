@@ -96,7 +96,7 @@ export default function About() {
         <div className="mx-auto grid max-w-[1600px] gap-16 md:grid-cols-12">
           <div className="md:col-span-4">
             <div className="eyebrow">The story</div>
-            <div className="mt-8 relative aspect-[4/5] w-full max-w-sm overflow-hidden bg-paper-warm">
+            <div className="mt-8 relative aspect-[4/5] w-full max-w-sm overflow-hidden bg-white">
               <Image
                 src={KATE_PORTRAIT}
                 alt="Kate Baldwin"
