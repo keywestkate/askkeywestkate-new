@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#eef0f5;color:#1c2b4a}
+.hero{position:relative;width:100%;height:520px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(28,43,74,0.92) 45%,rgba(28,43,74,0.2) 100%)}
+.hero-c{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:56px}
+.ey{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:14px;font-weight:500}
+.ht{font-family:'DM Serif Display',serif;font-size:76px;color:#fff;line-height:0.95;margin-bottom:10px}
+.ht span{color:#c9a84c}
+.hsub{font-size:17px;color:rgba(255,255,255,0.75);font-weight:400;margin-bottom:32px}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.25);border-radius:100px;padding:8px 18px;font-size:14px;color:#fff}
+.pill b{color:#c9a84c;font-weight:700;font-size:15px}
+.kbar{display:grid;grid-template-columns:repeat(5,1fr);background:#1c2b4a}
+.k{padding:24px 10px;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
+.k:last-child{border-right:none}
+.kn{font-family:'DM Serif Display',serif;font-size:32px;color:#c9a84c;line-height:1}
+.kl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:6px;font-weight:500}
+.cta3{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-bottom:4px solid #1c2b4a}
+.cta{padding:26px 22px;border-right:1px solid #e8eaee;display:flex;flex-direction:column;gap:6px}
+.cta:last-child{border-right:none}
+.ctag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;font-weight:600}
+.ctit{font-size:16px;font-weight:700;color:#1c2b4a;line-height:1.2}
+.cnote{font-size:12px;color:#9aa3b8;font-weight:300}
+.cbtn{margin-top:12px;display:inline-block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:11px 18px;border-radius:5px}
+.cd{background:#1c2b4a;color:#fff}
+.cg{background:#c9a84c;color:#1c2b4a}
+.co{background:transparent;color:#1c2b4a;border:2px solid #1c2b4a}
+.wrap{padding:40px 40px 0}
+.sec{margin-bottom:40px}
+.slabel{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#9aa3b8;font-weight:600;margin-bottom:18px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.bcard{background:#fff;border-radius:10px;padding:28px}
+.bn{font-family:'DM Serif Display',serif;font-size:48px;color:#1c2b4a;line-height:1}
+.bs{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;font-weight:600;margin-top:6px}
+.bd{font-size:13px;color:#9aa3b8;margin-top:10px;line-height:1.5;font-weight:300}
+.tcard{border-radius:10px;overflow:hidden;background:#fff}
+.thead{background:#1c2b4a;padding:18px 20px}
+.tcity{font-size:18px;font-weight:700;color:#fff}
+.ttag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:3px;font-weight:500}
+.tbody{padding:18px 20px}
+.tstat{font-family:'DM Serif Display',serif;font-size:36px;color:#c9a84c;line-height:1;margin-bottom:6px}
+.tdesc{font-size:12px;color:#9aa3b8;line-height:1.5;font-weight:300}
+.fcard{background:#fff;border-radius:10px;padding:24px;display:flex;align-items:center;gap:20px}
+.fn{font-family:'DM Serif Display',serif;font-size:48px;color:#1c2b4a;flex-shrink:0;line-height:1}
+.fdiv{width:1px;height:48px;background:#e4e8f0;flex-shrink:0}
+.flab{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;font-weight:600;margin-bottom:5px}
+.fdesc{font-size:13px;color:#9aa3b8;line-height:1.5;font-weight:300}
+.rcard{background:#1c2b4a;border-radius:10px;padding:24px}
+.rnum{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;font-weight:500}
+.rtit{font-size:17px;font-weight:700;color:#fff;margin-bottom:8px}
+.rdesc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.55;font-weight:300}
+.disc{background:#1c2b4a;margin-top:40px;padding:22px 40px;font-size:10px;color:rgba(255,255,255,0.3);line-height:1.7;text-align:center}
+</style>
+</head>
+<body>
+<div class="hero">
+  <img src="/laundry.jpg" alt="Star Laundry Club">
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="ey">Private Investment &middot; Oregon Portfolio</div>
+    <div class="ht">Star Laundry<br><span>Club 3.0</span></div>
+    <div class="hsub">7 stores &middot; Salem &amp; Bend, Oregon &middot; 299 machines</div>
+    <div class="pills">
+      <div class="pill"><b>$1.3M</b> Adj. EBITDA</div>
+      <div class="pill"><b>6x</b> Entry</div>
+      <div class="pill"><b>49%</b> Investor Equity</div>
+      <div class="pill"><b>14&ndash;17%</b> Target IRR</div>
+      <div class="pill"><b>2.35x</b> Equity Multiple</div>
+    </div>
+  </div>
+</div>
+<div class="kbar">
+  <div class="k"><div class="kn">$8M</div><div class="kl">Purchase price</div></div>
+  <div class="k"><div class="kn">$6M</div><div class="kl">Raise size</div></div>
+  <div class="k"><div class="kn">299</div><div class="kl">Machines</div></div>
+  <div class="k"><div class="kn">7</div><div class="kl">Stores</div></div>
+  <div class="k"><div class="kn">5&ndash;7 yrs</div><div class="kl">Hold period</div></div>
+</div>
+<div class="cta3">
+  <div class="cta">
+    <div class="ctag">Available now</div>
+    <div class="ctit">Watch the deal walkthrough</div>
+    <div class="cnote">Full Zoom recording with Ben</div>
+    <a class="cbtn co" href="https://youtu.be/ODV8zM0tksk">Watch recording</a>
+  </div>
+  <div class="cta">
+    <div class="ctag">Live &middot; Thu Apr 30 &middot; 7:30 PM EDT</div>
+    <div class="ctit">Join Benjamin live this Thursday</div>
+    <div class="cnote">Ask questions directly from the team</div>
+    <a class="cbtn cd" href="https://zoom.us/meeting/register/MhkTH2abRmKJls0tywDAjA">Register for Zoom</a>
+  </div>
+  <div class="cta">
+    <div class="ctag">3% deposit &middot; holds your spot</div>
+    <div class="ctit">Reserve your allocation</div>
+    <div class="cnote">Unlocks full diligence before you fund</div>
+    <a class="cbtn cg" href="https://www.fractional.app/p/starlaundryclub3.0a">Soft commit on Fractional</a>
+  </div>
+</div>
+<div class="wrap">
+  <div class="sec">
+    <div class="slabel">Target returns</div>
+    <div class="g3">
+      <div class="bcard"><div class="bn">14&ndash;17%</div><div class="bs">Target IRR</div><div class="bd">Based on cash flow + 10x exit</div></div>
+      <div class="bcard"><div class="bn">2.35x</div><div class="bs">Equity multiple</div><div class="bd">$50K targets ~$114K returned</div></div>
+      <div class="bcard"><div class="bn">~10x</div><div class="bs">Target exit</div><div class="bd">Acquired at 6x &middot; exiting at 10x</div></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="slabel">Track record</div>
+    <div class="g3">
+      <div class="tcard">
+        <div class="thead"><div class="tcity">Boston, MA</div><div class="ttag">Proof of concept</div></div>
+        <div class="tbody"><div class="tstat">2 mos</div><div class="tdesc">Back-to-back double-digit KPI growth. Creative financing improved at close.</div></div>
+      </div>
+      <div class="tcard">
+        <div class="thead"><div class="tcity">Nashua, NH</div><div class="ttag">First club deal</div></div>
+        <div class="tbody"><div class="tstat">$121K</div><div class="tdesc">Landlord renos + rent abatement. Distributions ahead of schedule.</div></div>
+      </div>
+      <div class="tcard">
+        <div class="thead"><div class="tcity">Orem, UT</div><div class="ttag">Strongest result</div></div>
+        <div class="tbody"><div class="tstat">+28%</div><div class="tdesc">Revenue in ~60 days. Debt cut 50%. Ahead of every forecast.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="slabel">Fees</div>
+    <div class="g2">
+      <div class="fcard"><div class="fn">3%</div><div class="fdiv"></div><div><div class="flab">Platform fee &middot; Fractional</div><div class="fdesc">On your commitment. Factor into total capital when sizing your allocation.</div></div></div>
+      <div class="fcard"><div class="fn">$30K</div><div class="fdiv"></div><div><div class="flab">Monthly management fee</div><div class="fdesc">Across all 7 stores. Keeps the full team dedicated to the portfolio.</div></div></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="slabel">Key risks</div>
+    <div class="g3">
+      <div class="rcard"><div class="rnum">Risk 01</div><div class="rtit">Balloon notes</div><div class="rdesc">$1.5M reserved to retire two early seller-note balloons before maturity.</div></div>
+      <div class="rcard"><div class="rnum">Risk 02</div><div class="rtit">Execution</div><div class="rdesc">Same team from Boston, Nashua &amp; Orem &mdash; embedded from day one.</div></div>
+      <div class="rcard"><div class="rnum">Risk 03</div><div class="rtit">Exit timing</div><div class="rdesc">Hold extends to 7 years if needed. 10x is management's conservative floor.</div></div>
+    </div>
+  </div>
+</div>
+<div class="disc">Private offering for accredited investors only. Returns are management's underwriting assumptions &mdash; not guarantees. All investments carry risk including loss of capital. 3% Fractional fee and $30K/mo management fee affect net returns. Not an offer to sell securities.</div>
+</body>
+</html>
