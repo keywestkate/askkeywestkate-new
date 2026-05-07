@@ -82,7 +82,7 @@ export default function Home() {
         {/* Left-side headline */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-8 md:px-16">
           <div className="mx-auto max-w-[1600px]">
-            <h1 className="font-display text-[clamp(3.5rem,10vw,9rem)] leading-[0.92] tracking-[-0.04em] text-paper [text-shadow:0_2px_24px_rgba(0,0,0,0.45)]">
+            <h1 className="font-display text-[clamp(2.5rem,6.5vw,6rem)] leading-[0.95] tracking-[-0.02em] text-paper [text-shadow:0_2px_24px_rgba(0,0,0,0.45)]">
               Selling a<br />lifestyle.
             </h1>
             <p className="mt-6 max-w-lg text-[clamp(1.1rem,2vw,1.5rem)] font-bold text-paper [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
