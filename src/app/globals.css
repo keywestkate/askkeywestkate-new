@@ -20,9 +20,9 @@
   --color-gulf-500: #44A6B5;     /* Moonstone */
   --color-gulf-700: #004554;     /* Midnight Green */
 
-  /* Font stacks — CaviarDreams (titles) + Lemon Milk (body) */
-  --font-display: var(--font-caviar-dreams), "Helvetica Neue", Arial, sans-serif;
-  --font-sans: var(--font-lemon-milk), "Helvetica Neue", Arial, sans-serif;
+  /* Font stacks — Lemon Milk (titles, all-caps by design) + CaviarDreams (body) */
+  --font-display: var(--font-lemon-milk), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-caviar-dreams), "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
