@@ -128,7 +128,7 @@ export default function Build() {
                   {t.body}
                 </p>
                 <Link
-                  href="/journal"
+                  href="/blog"
                   className="mt-2 inline-flex text-[0.78rem] uppercase tracking-[0.22em] text-ink-950 underline-offset-8 hover:underline"
                 >
                   Read the article &rarr;

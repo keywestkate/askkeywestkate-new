@@ -360,7 +360,7 @@ export default function Home() {
       <section className="px-8 py-28 md:px-12 md:py-36">
         <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="eyebrow">The Journal</div>
+            <div className="eyebrow">The Blog</div>
             <h2 className="mt-6 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.95] tracking-[-0.035em] text-ink-950">
               Build in the Keys.
               <br />
@@ -374,10 +374,10 @@ export default function Home() {
               the stories that make the Keys the Keys.
             </p>
             <Link
-              href="/journal"
+              href="/blog"
               className="mt-10 inline-flex items-center gap-3 text-[0.78rem] uppercase tracking-[0.22em] text-ink-950 underline-offset-8 hover:underline"
             >
-              Read the Journal &rarr;
+              Read the Blog &rarr;
             </Link>
           </div>
 

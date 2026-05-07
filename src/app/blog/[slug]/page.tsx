@@ -5,7 +5,8 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ContactBlock } from "@/components/ContactBlock";
 import { MdxContent } from "@/components/MdxContent";
-import { getAllSlugs, getPostBySlug } from "@/lib/journal";
+import { getAllSlugs, getPostBySlug } from "@/lib/blog";
+import { getCategoryBySlug } from "@/lib/categories";
 
 export const dynamicParams = false;
 
@@ -28,7 +29,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function JournalPost({
+export default async function BlogPost({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -52,7 +53,12 @@ export default async function JournalPost({
         <header className="relative px-8 pt-32 pb-16 md:px-12 md:pt-40 md:pb-20">
           <div className="mx-auto max-w-4xl">
             <div className="mb-10 flex flex-wrap items-center justify-between gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-ink-500">
-              <span className="text-gulf-700">{post.kicker}</span>
+              <Link
+                href={`/blog/category/${post.category}`}
+                className="text-gulf-700 hover:underline"
+              >
+                {getCategoryBySlug(post.category)?.name ?? post.kicker}
+              </Link>
               <span>{date}</span>
               {post.readMinutes && <span>{post.readMinutes} min read</span>}
               {post.author && <span>{post.author}</span>}
@@ -77,10 +83,10 @@ export default async function JournalPost({
         <div className="border-t border-ink-200 px-8 py-16 md:px-12">
           <div className="mx-auto flex max-w-4xl items-center justify-between">
             <Link
-              href="/journal"
+              href="/blog"
               className="text-[0.78rem] uppercase tracking-[0.22em] text-ink-800 underline-offset-8 hover:underline"
             >
-              &larr; Back to The Journal
+              &larr; Back to The Blog
             </Link>
             <Link
               href="/contact"

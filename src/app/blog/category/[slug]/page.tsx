@@ -5,7 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
-import { getPostsByCategory } from "@/lib/journal";
+import { getPostsByCategory } from "@/lib/blog";
 import { CATEGORIES, getCategoryBySlug } from "@/lib/categories";
 
 export const dynamicParams = false;
@@ -23,7 +23,7 @@ export async function generateMetadata({
   const cat = getCategoryBySlug(slug);
   if (!cat) return { title: "Not found" };
   return {
-    title: `${cat.name} · The Journal`,
+    title: `${cat.name} · The Blog`,
     description: cat.description,
   };
 }
@@ -52,7 +52,7 @@ export default async function CategoryPage({
       <Nav />
 
       <PageHero
-        eyebrow="The Journal"
+        eyebrow="The Blog"
         metaLeft={
           <>
             Category
@@ -64,7 +64,7 @@ export default async function CategoryPage({
           <>
             {posts.length} {posts.length === 1 ? "post" : "posts"}
             <br />
-            <Link href="/journal" className="hover:text-gulf-700">
+            <Link href="/blog" className="hover:text-gulf-700">
               ← All categories
             </Link>
           </>
@@ -80,7 +80,7 @@ export default async function CategoryPage({
             {CATEGORIES.map((c) => (
               <Link
                 key={c.slug}
-                href={`/journal/category/${c.slug}`}
+                href={`/blog/category/${c.slug}`}
                 className={
                   c.slug === slug
                     ? "border border-gulf-700 bg-gulf-700 px-3 py-1.5 text-[0.7rem] uppercase tracking-[0.16em] text-white"
@@ -102,7 +102,7 @@ export default async function CategoryPage({
                 No posts in this category yet. Check back soon — Kate is writing.
               </p>
               <Link
-                href="/journal"
+                href="/blog"
                 className="mt-6 inline-block border-b border-ink-300 pb-1 text-[0.78rem] uppercase tracking-[0.22em] text-ink-500 transition hover:border-ink-950 hover:text-ink-950"
               >
                 Browse all posts &rarr;
@@ -113,7 +113,7 @@ export default async function CategoryPage({
               {posts.map((p) => (
                 <li key={p.slug}>
                   <Link
-                    href={`/journal/${p.slug}`}
+                    href={`/blog/${p.slug}`}
                     className="group grid gap-8 py-10 md:grid-cols-12 md:items-baseline"
                   >
                     <span className="stat-label text-gulf-700 md:col-span-2">

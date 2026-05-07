@@ -2,12 +2,27 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const modernSerif = localFont({
+const caviarDreams = localFont({
   src: [
-    { path: "../../public/fonts/ModernSerif.ttf", weight: "100 900", style: "normal" },
-    { path: "../../public/fonts/ModernSerif-Italic.ttf", weight: "100 900", style: "italic" },
+    { path: "../../public/fonts/CaviarDreams.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/CaviarDreams_Italic.ttf", weight: "400", style: "italic" },
+    { path: "../../public/fonts/CaviarDreams_Bold.ttf", weight: "700", style: "normal" },
+    { path: "../../public/fonts/CaviarDreams_BoldItalic.ttf", weight: "700", style: "italic" },
   ],
-  variable: "--font-modern-serif",
+  variable: "--font-caviar-dreams",
+  display: "swap",
+});
+
+const lemonMilk = localFont({
+  src: [
+    { path: "../../public/fonts/LEMONMILK-Light.otf", weight: "300", style: "normal" },
+    { path: "../../public/fonts/LEMONMILK-LightItalic.otf", weight: "300", style: "italic" },
+    { path: "../../public/fonts/LEMONMILK-Regular.otf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/LEMONMILK-RegularItalic.otf", weight: "400", style: "italic" },
+    { path: "../../public/fonts/LEMONMILK-Medium.otf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/LEMONMILK-Bold.otf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-lemon-milk",
   display: "swap",
 });
 
@@ -38,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${modernSerif.variable} h-full antialiased`}
+      className={`${caviarDreams.variable} ${lemonMilk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

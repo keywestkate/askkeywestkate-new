@@ -4,13 +4,13 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
-import { getAllPosts } from "@/lib/journal";
+import { getAllPosts } from "@/lib/blog";
 import { CATEGORIES, getCategoryBySlug } from "@/lib/categories";
 
 export const metadata: Metadata = {
-  title: "The Journal",
+  title: "The Blog",
   description:
-    "Daily field notes for Florida Keys buyers, builders, and owners. Market numbers, ROGO and flood-zone explainers, listings, and Keys life.",
+    "Field notes from Kate Baldwin — Florida Keys real estate, architecture, culture, market trends, listings, and life on the islands.",
 };
 
 function formatDate(iso: string) {
@@ -21,7 +21,7 @@ function formatDate(iso: string) {
   });
 }
 
-export default async function Journal() {
+export default async function Blog() {
   const posts = await getAllPosts();
 
   return (
@@ -32,9 +32,9 @@ export default async function Journal() {
         eyebrow="Field notes"
         metaLeft={
           <>
-            The Journal
+            The Blog
             <br />
-            Daily for buyers, builders, owners
+            Florida Keys, daily
           </>
         }
         metaRight={
@@ -51,13 +51,13 @@ export default async function Journal() {
             from the Keys.
           </>
         }
-        subtitle="A daily record of the market, the build code, the neighborhoods, and the life — written for people who take the Keys seriously."
+        subtitle="A record of the market, the build code, the neighborhoods, and the life — written for people who take the Keys seriously."
         rightColumn={
           <div className="flex flex-wrap gap-2 md:justify-end">
             {CATEGORIES.map((c) => (
               <Link
                 key={c.slug}
-                href={`/journal/category/${c.slug}`}
+                href={`/blog/category/${c.slug}`}
                 className="border border-ink-200 px-3 py-1.5 text-[0.7rem] uppercase tracking-[0.16em] text-ink-800 transition hover:border-gulf-700 hover:bg-gulf-700 hover:text-white"
               >
                 {c.name}
@@ -78,7 +78,7 @@ export default async function Journal() {
               {posts.map((p) => (
                 <li key={p.slug}>
                   <Link
-                    href={`/journal/${p.slug}`}
+                    href={`/blog/${p.slug}`}
                     className="group grid gap-8 py-10 md:grid-cols-12 md:items-baseline"
                   >
                     <span className="stat-label text-gulf-700 md:col-span-2">
@@ -109,7 +109,7 @@ export default async function Journal() {
       </section>
 
       <ContactBlock
-        title="Want the Journal in your inbox?"
+        title="Want the Blog in your inbox?"
         accent="I&rsquo;ll send you the good ones."
       />
       <Footer />

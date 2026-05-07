@@ -20,9 +20,9 @@
   --color-gulf-500: #44A6B5;     /* Moonstone */
   --color-gulf-700: #004554;     /* Midnight Green */
 
-  /* Font stacks — Modern Serif throughout */
-  --font-display: var(--font-modern-serif), Georgia, "Times New Roman", ui-serif, serif;
-  --font-sans: var(--font-modern-serif), Georgia, "Times New Roman", ui-serif, serif;
+  /* Font stacks — CaviarDreams (titles) + Lemon Milk (body) */
+  --font-display: var(--font-caviar-dreams), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-lemon-milk), "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
@@ -33,43 +33,52 @@ body {
   background: #ffffff;
   color: var(--color-ink-950);
   font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "cv11", "ss01";
 }
 
-/* All headings — bold Modern Serif */
+p {
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+/* All headings — CaviarDreams */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
 }
 
 /* Display type — oversized editorial headings */
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.025em;
-  line-height: 0.92;
+  letter-spacing: 0;
+  line-height: 1.02;
   font-weight: 700;
 }
 
 /* Subtle eyebrow label */
 .eyebrow {
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   text-transform: uppercase;
   letter-spacing: 0.22em;
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-ink-600);
 }
 
 /* Vertical stat label */
 .stat-label {
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* Used by hero while photo is missing */

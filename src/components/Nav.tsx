@@ -5,7 +5,7 @@ const PUBLIC_LINKS = [
   { href: "/sell", label: "Sell" },
   { href: "/build", label: "Build" },
   { href: "/neighborhoods", label: "Neighborhoods" },
-  { href: "/journal", label: "Journal" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About Kate" },
 ];
 
