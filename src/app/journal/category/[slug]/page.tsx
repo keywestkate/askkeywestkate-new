@@ -1,17 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
-import { getAllPosts } from "@/lib/journal";
+import { getPostsByCategory } from "@/lib/journal";
 import { CATEGORIES, getCategoryBySlug } from "@/lib/categories";
 
-export const metadata: Metadata = {
-  title: "The Journal",
-  description:
-    "Daily field notes for Florida Keys buyers, builders, and owners. Market numbers, ROGO and flood-zone explainers, listings, and Keys life.",
-};
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  return CATEGORIES.map((c) => ({ slug: c.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const cat = getCategoryBySlug(slug);
+  if (!cat) return { title: "Not found" };
+  return {
+    title: `${cat.name} · The Journal`,
+    description: cat.description,
+  };
+}
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -21,44 +36,56 @@ function formatDate(iso: string) {
   });
 }
 
-export default async function Journal() {
-  const posts = await getAllPosts();
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const category = getCategoryBySlug(slug);
+  if (!category) notFound();
+
+  const posts = await getPostsByCategory(slug);
 
   return (
     <main className="bg-paper text-ink-950">
       <Nav />
 
       <PageHero
-        eyebrow="Field notes"
+        eyebrow="The Journal"
         metaLeft={
           <>
-            The Journal
+            Category
             <br />
-            Daily for buyers, builders, owners
+            {category.name}
           </>
         }
         metaRight={
           <>
-            Written by Kate Baldwin
+            {posts.length} {posts.length === 1 ? "post" : "posts"}
             <br />
-            Bluescape Real Estate
+            <Link href="/journal" className="hover:text-gulf-700">
+              ← All categories
+            </Link>
           </>
         }
         title={
           <>
-            Field notes
-            <br />
-            from the Keys.
+            {category.name}
           </>
         }
-        subtitle="A daily record of the market, the build code, the neighborhoods, and the life — written for people who take the Keys seriously."
+        subtitle={category.description}
         rightColumn={
           <div className="flex flex-wrap gap-2 md:justify-end">
             {CATEGORIES.map((c) => (
               <Link
                 key={c.slug}
                 href={`/journal/category/${c.slug}`}
-                className="border border-ink-200 px-3 py-1.5 text-[0.7rem] uppercase tracking-[0.16em] text-ink-800 transition hover:border-gulf-700 hover:bg-gulf-700 hover:text-white"
+                className={
+                  c.slug === slug
+                    ? "border border-gulf-700 bg-gulf-700 px-3 py-1.5 text-[0.7rem] uppercase tracking-[0.16em] text-white"
+                    : "border border-ink-200 px-3 py-1.5 text-[0.7rem] uppercase tracking-[0.16em] text-ink-800 transition hover:border-gulf-700 hover:bg-gulf-700 hover:text-white"
+                }
               >
                 {c.name}
               </Link>
@@ -70,9 +97,17 @@ export default async function Journal() {
       <section className="px-8 py-20 md:px-12 md:py-28">
         <div className="mx-auto max-w-[1600px]">
           {posts.length === 0 ? (
-            <p className="text-ink-500">
-              No posts yet. Drafts land in <code>content/journal/</code>.
-            </p>
+            <div className="border-y border-ink-200 py-20 text-center">
+              <p className="text-ink-500">
+                No posts in this category yet. Check back soon — Kate is writing.
+              </p>
+              <Link
+                href="/journal"
+                className="mt-6 inline-block border-b border-ink-300 pb-1 text-[0.78rem] uppercase tracking-[0.22em] text-ink-500 transition hover:border-ink-950 hover:text-ink-950"
+              >
+                Browse all posts &rarr;
+              </Link>
+            </div>
           ) : (
             <ul className="divide-y divide-ink-200 border-y border-ink-200">
               {posts.map((p) => (
@@ -82,7 +117,7 @@ export default async function Journal() {
                     className="group grid gap-8 py-10 md:grid-cols-12 md:items-baseline"
                   >
                     <span className="stat-label text-gulf-700 md:col-span-2">
-                      {getCategoryBySlug(p.category)?.name ?? p.kicker}
+                      {category.name}
                     </span>
                     <h2 className="font-display text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.02] tracking-[-0.02em] text-ink-950 transition group-hover:text-ink-700 md:col-span-6">
                       {p.title}
@@ -109,8 +144,8 @@ export default async function Journal() {
       </section>
 
       <ContactBlock
-        title="Want the Journal in your inbox?"
-        accent="I&rsquo;ll send you the good ones."
+        title="Have a story idea or a question?"
+        accent="Send Kate a note."
       />
       <Footer />
     </main>

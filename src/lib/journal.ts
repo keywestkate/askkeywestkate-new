@@ -5,6 +5,7 @@ import matter from "gray-matter";
 export type PostFrontmatter = {
   title: string;
   kicker: string;
+  category: string; // category slug — see src/lib/categories.ts
   excerpt: string;
   date: string; // ISO
   readMinutes?: number;
@@ -69,4 +70,11 @@ export async function getPostBySlug(slug: string): Promise<PostFull | null> {
 export async function getAllSlugs(): Promise<string[]> {
   const files = await readAllFiles();
   return files.map(slugFromFilename);
+}
+
+export async function getPostsByCategory(
+  categorySlug: string,
+): Promise<PostSummary[]> {
+  const all = await getAllPosts();
+  return all.filter((p) => p.category === categorySlug);
 }
