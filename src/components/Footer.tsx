@@ -6,8 +6,8 @@ export function Footer() {
       <div className="mx-auto max-w-[1600px] px-8 py-20 md:px-12 md:py-28">
         <div className="grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="font-display text-5xl leading-[0.95] tracking-tight text-ink-950 md:text-6xl">
-              Kate&nbsp;Baldwin
+            <div className="font-display text-3xl leading-[1.05] tracking-tight text-ink-950 sm:text-4xl md:text-6xl">
+              Kate Baldwin
             </div>
             <div className="mt-3 text-[0.68rem] uppercase tracking-[0.3em] text-ink-500">
               Luxury Real Estate · Bluescape · Key West
