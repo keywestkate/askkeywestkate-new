@@ -50,7 +50,7 @@ export function Nav({ theme = "dark", userEmail: _userEmail, signout }: NavProps
             Kate&nbsp;Baldwin
           </span>
           <span className={`hidden text-[0.62rem] uppercase tracking-[0.28em] md:inline ${subColor}`}>
-            {admin ? "Admin" : dashboard ? "Portal" : "Bluescape"}
+            {admin ? "Admin" : dashboard ? "Portal" : "Bluescape Real Estate"}
           </span>
         </Link>
 
