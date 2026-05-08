@@ -177,12 +177,16 @@ export default function Home() {
             Luxury Real Estate &middot; Florida Keys &middot; Key West
           </p>
 
+          <p className="mt-4 text-[0.8rem] uppercase tracking-[0.2em] text-ink-500">
+            Key West native &middot; Formerly Top 3% of BHHS
+          </p>
+
           <div className="mt-10 border-t border-ink-200 pt-10">
             <div className="flex flex-wrap gap-x-12 gap-y-6">
               {[
                 { value: "$43.5M+", label: "In Closings" },
                 { value: "41", label: "Homes Sold" },
-                { value: "20+", label: "Years in the Keys" },
+                { value: "7", label: "Years in Real Estate" },
               ].map((s) => (
                 <div key={s.label} className="flex flex-col gap-1">
                   <span className="font-display text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-tight text-ink-950">
