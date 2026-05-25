@@ -12,37 +12,6 @@ const FEATURED = [
   `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-20.jpg`,
 ];
 
-const PILLARS = [
-  {
-    index: "01",
-    label: "Waterfront",
-    title: "Homes on the water",
-    body:
-      "Open-water, canal, and oceanfront homes chosen for the view, the dockage, and the daily ritual of saltwater steps from the kitchen.",
-  },
-  {
-    index: "02",
-    label: "Boating",
-    title: "A life on the water",
-    body:
-      "Deep-water dockage, lifts, and boat-ready lots from Key West to Islamorada — matched to the run you want to make on a Sunday morning.",
-  },
-  {
-    index: "03",
-    label: "Fishing",
-    title: "Flats, reef, offshore",
-    body:
-      "Homes placed for the fishery you love — bonefish at sunrise, the reef at noon, mahi on the Gulf Stream by afternoon.",
-  },
-  {
-    index: "04",
-    label: "Sand Bar Life",
-    title: "Your Sunday, waiting",
-    body:
-      "The Keys is a chain of sand bars, sunsets, and friends you haven\u2019t met yet. I find the home that makes all of it feel effortless.",
-  },
-];
-
 const JOURNAL = [
   {
     kicker: "Build",
@@ -211,43 +180,6 @@ export default function Home() {
 
       </section>
 
-      {/* ABOUT KATE — centered menu style with monstera watermark */}
-      <section className="relative overflow-hidden bg-white px-8 py-36 md:px-12 md:py-48">
-        {/* Monstera leaf — centered watermark, multiply blend removes white bg */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <Image
-            src="/images/brand/monstera-leaf.png"
-            alt=""
-            width={700}
-            height={900}
-            aria-hidden="true"
-            className="h-full w-auto max-w-none object-contain opacity-55"
-            style={{ mixBlendMode: "multiply" }}
-          />
-        </div>
-
-        {/* Text — centered on top */}
-        <div className="relative mx-auto max-w-2xl text-center">
-          <div className="eyebrow text-ink-400">About Kate</div>
-          <h2 className="mt-6 font-display text-[clamp(2.8rem,6.5vw,5.5rem)] leading-[0.95] tracking-[-0.035em] text-ink-950">
-            A Key West native.
-            <br />
-            <span className="text-gulf-700">Local roots.</span>
-            <br />
-            <span className="text-gulf-700">Global results.</span>
-          </h2>
-          <div className="mt-10">
-            <Link
-              href="/about"
-              className="inline-block border-b border-ink-300 pb-1 text-[0.78rem] uppercase tracking-[0.22em] text-ink-500 transition-colors hover:border-ink-950 hover:text-ink-950"
-            >
-              Read the full story &rarr;
-            </Link>
-          </div>
-        </div>
-      </section>
-
-
       {/* PHILOSOPHY — asymmetric, editorial */}
       <section className="bg-white px-8 py-28 md:px-12 md:py-40">
         <div className="mx-auto grid max-w-[1600px] gap-16 md:grid-cols-12">
@@ -267,44 +199,6 @@ export default function Home() {
               and family time — the kind of place where weekends stretch into
               weeks and every evening ends with the sky on fire.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* PILLARS — numbered, editorial grid */}
-      <section className="px-8 py-28 md:px-12 md:py-36">
-        <div className="mx-auto max-w-[1600px]">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <div className="eyebrow">What I specialize in</div>
-              <h2 className="mt-6 font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-[-0.035em] text-ink-950">
-                A home chosen for the life you&rsquo;ll actually live.
-              </h2>
-            </div>
-            <Link
-              href="/about"
-              className="text-[0.78rem] uppercase tracking-[0.22em] text-ink-800 underline-offset-8 hover:underline"
-            >
-              How I work &rarr;
-            </Link>
-          </div>
-
-          <div className="mt-20 grid gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-4">
-            {PILLARS.map((p) => (
-              <article key={p.index} className="flex flex-col gap-5">
-                <div className="flex items-baseline justify-between">
-                  <span className="stat-label text-ink-500">/ {p.index}</span>
-                  <span className="stat-label text-gulf-700">{p.label}</span>
-                </div>
-                <div className="h-px w-full bg-ink-200" />
-                <h3 className="font-display text-[1.6rem] leading-[1] tracking-[-0.02em] text-ink-950">
-                  {p.title}
-                </h3>
-                <p className="text-[0.95rem] leading-relaxed text-ink-800">
-                  {p.body}
-                </p>
-              </article>
-            ))}
           </div>
         </div>
       </section>

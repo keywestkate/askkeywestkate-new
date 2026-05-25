@@ -6,13 +6,12 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
 import { PortalCTA } from "@/components/PortalCTA";
+import { ListingCard } from "@/components/ListingCard";
+import { ListingFilters } from "@/components/ListingFilters";
+import { getListings, type ListingSearchParams } from "@/lib/spark";
 
 const WATERFRONT = "/images/lifestyle/waterfront";
 const HERO_PHOTO = `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-5.jpg`;
-const LISTING_PHOTOS = [2, 7, 12, 17, 22, 26].map(
-  (n) =>
-    `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-${n}.jpg`,
-);
 
 export const metadata: Metadata = {
   title: "Buy a Home in the Keys",
@@ -51,18 +50,46 @@ const COLLECTIONS = [
   },
 ];
 
-const FILTERS = [
-  "Waterfront",
-  "Canal dockage",
-  "Oceanfront",
-  "Open water",
-  "Pool",
-  "Guest house",
-  "Elevation VE/AE",
-  "STR-eligible",
-];
+interface PageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
 
-export default function Buy() {
+function sp(val: string | string[] | undefined): string | undefined {
+  return Array.isArray(val) ? val[0] : val;
+}
+
+export default async function Buy({ searchParams }: PageProps) {
+  const params = await searchParams;
+
+  const filterParams: ListingSearchParams = {
+    limit: 24,
+    status: "Active",
+  };
+
+  const minPrice = sp(params.minPrice);
+  const maxPrice = sp(params.maxPrice);
+  const minBeds = sp(params.minBeds);
+  const waterfrontType = sp(params.waterfrontType) as ListingSearchParams["waterfrontType"];
+  const hasDockage = sp(params.hasDockage);
+  const minMM = sp(params.minMM);
+  const maxMM = sp(params.maxMM);
+  const rentalsAllowed = sp(params.rentalsAllowed);
+  const hasPool = sp(params.hasPool);
+
+  if (minPrice) filterParams.minPrice = Number(minPrice);
+  if (maxPrice) filterParams.maxPrice = Number(maxPrice);
+  if (minBeds) filterParams.minBeds = Number(minBeds);
+  if (waterfrontType) filterParams.waterfrontType = waterfrontType;
+  if (hasDockage === "1") filterParams.hasDockage = true;
+  if (minMM) filterParams.minMileMarker = Number(minMM);
+  if (maxMM) filterParams.maxMileMarker = Number(maxMM);
+  if (rentalsAllowed === "1") filterParams.rentalsAllowed = true;
+  if (hasPool === "1") filterParams.hasPool = true;
+
+  const hasFilters = Object.keys(filterParams).length > 2; // beyond limit+status
+
+  const { listings } = await getListings(filterParams);
+
   return (
     <main className="bg-paper text-ink-950">
       <Nav />
@@ -92,7 +119,7 @@ export default function Buy() {
         subtitle="Every home in the Keys tells you how you'll spend your Saturday. I show you the ones worth spending them in."
         rightColumn={
           <div className="flex flex-wrap gap-3 md:justify-end">
-            {FILTERS.map((f) => (
+            {["Waterfront", "Canal dockage", "Oceanfront", "Open water", "Pool", "Guest house", "Elevation VE/AE", "STR-eligible"].map((f) => (
               <span
                 key={f}
                 className="border border-ink-200 px-4 py-2 text-[0.72rem] uppercase tracking-[0.18em] text-ink-800"
@@ -157,7 +184,7 @@ export default function Buy() {
         </div>
       </section>
 
-      {/* FEATURED LISTINGS placeholder */}
+      {/* LIVE LISTINGS */}
       <section className="bg-paper-soft px-8 py-28 md:px-12 md:py-36">
         <div className="mx-auto max-w-[1600px]">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -167,40 +194,47 @@ export default function Buy() {
                 This week&rsquo;s shortlist.
               </h2>
             </div>
-            <span className="stat-label text-ink-500">Feed coming soon</span>
+            <span className="stat-label text-ink-500">
+              {listings.length} listing{listings.length !== 1 ? "s" : ""}
+            </span>
           </div>
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {LISTING_PHOTOS.map((src, i) => (
-              <article key={src} className="group flex flex-col">
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-paper-warm">
-                  <Image
-                    src={src}
-                    alt="Key West waterfront listing"
-                    fill
-                    className="object-cover transition duration-700 group-hover:scale-[1.02]"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
-                  />
-                  <div className="absolute inset-0 flex items-end p-6">
-                    <span className="stat-label bg-paper/95 px-3 py-1 text-ink-950">
-                      Coming soon
-                    </span>
-                  </div>
-                </div>
-                <div className="mt-5 flex items-baseline justify-between">
-                  <div className="stat-label text-ink-500">Key West</div>
-                  <div className="stat-label text-ink-500">
-                    / {String(i + 1).padStart(2, "0")}
-                  </div>
-                </div>
-                <div className="mt-3 font-display text-xl leading-snug text-ink-950">
-                  Waterfront · dockage
-                </div>
-                <div className="mt-1 text-sm text-ink-600">
-                  Reserved for a buyer who knows
-                </div>
-              </article>
-            ))}
+
+          {/* Filters */}
+          <div className="mt-10">
+            <ListingFilters currentParams={params} />
           </div>
+
+          {listings.length > 0 ? (
+            <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+              {listings.map((listing, i) => (
+                <ListingCard key={listing.ListingKey} listing={listing} index={i} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12 rounded-lg border border-ink-200 bg-paper px-8 py-16 text-center">
+              <p className="text-ink-500">
+                {hasFilters
+                  ? "No listings match your filters. Try adjusting your search."
+                  : "Check back soon — new listings are updated daily."}
+              </p>
+              <div className="mt-6 flex justify-center gap-4">
+                {hasFilters && (
+                  <Link
+                    href="/buy"
+                    className="inline-block border border-ink-950 px-8 py-3 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 hover:opacity-60"
+                  >
+                    Clear filters
+                  </Link>
+                )}
+                <Link
+                  href="/contact"
+                  className="inline-block bg-ink-950 px-8 py-3 text-[0.78rem] uppercase tracking-[0.2em] text-paper hover:opacity-80"
+                >
+                  Tell me what you&rsquo;re looking for &rarr;
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

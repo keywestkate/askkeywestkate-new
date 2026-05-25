@@ -76,6 +76,12 @@ export default async function AdminPage() {
           >
             View all clients &rarr;
           </Link>
+          <Link
+            href="/admin/drip"
+            className="border border-ink-950 px-6 py-3 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 transition-opacity hover:opacity-60"
+          >
+            Drip campaigns &rarr;
+          </Link>
         </div>
 
         {/* Recent signups */}

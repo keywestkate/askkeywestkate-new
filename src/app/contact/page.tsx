@@ -58,7 +58,7 @@ export default function Contact() {
                 <div className="eyebrow">Email</div>
                 <a
                   href="mailto:Kate@BluescapeRealEstate.com"
-                  className="mt-4 block font-display text-[clamp(1.4rem,2.3vw,2rem)] leading-tight tracking-tight text-ink-950 hover:text-gulf-700"
+                  className="mt-4 block font-display text-[clamp(1rem,1.4vw,1.35rem)] leading-tight tracking-tight text-ink-950 hover:text-gulf-700"
                 >
                   Kate@BluescapeRealEstate.com
                 </a>
@@ -69,7 +69,7 @@ export default function Contact() {
                   href="https://instagram.com/askkeywestkate"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 block font-display text-[clamp(1.4rem,2.3vw,2rem)] leading-tight tracking-tight text-ink-950 hover:text-gulf-700"
+                  className="mt-4 block font-display text-[clamp(1rem,1.4vw,1.35rem)] leading-tight tracking-tight text-ink-950 hover:text-gulf-700"
                 >
                   @askkeywestkate
                 </a>
@@ -79,7 +79,9 @@ export default function Contact() {
                 <p className="mt-4 text-base leading-relaxed text-ink-800">
                   Bluescape Real Estate
                   <br />
-                  Key West, Florida
+                  22976 Overseas Hwy
+                  <br />
+                  Cudjoe Key, FL 33042
                 </p>
               </div>
             </div>

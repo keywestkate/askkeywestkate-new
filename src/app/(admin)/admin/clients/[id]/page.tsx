@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AdminNotes } from "./AdminNotes";
+import { DripPanel } from "./DripPanel";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Admin — Client Detail" };
@@ -21,6 +22,8 @@ export default async function ClientDetailPage({ params }: PageProps) {
     { data: sellers },
     { data: subscriptions },
     { data: activity },
+    { data: dripSequences },
+    { data: dripEnrollments },
   ] = await Promise.all([
     supabase
       .from("profiles")
@@ -46,6 +49,15 @@ export default async function ClientDetailPage({ params }: PageProps) {
       .eq("user_id", id)
       .order("created_at", { ascending: false })
       .limit(20),
+    supabase
+      .from("drip_sequences")
+      .select("id, name, is_active")
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("drip_enrollments")
+      .select("id, sequence_id, status, enrolled_at, next_send_at, next_step_number, drip_sequences(name)")
+      .eq("user_id", id)
+      .order("enrolled_at", { ascending: false }),
   ]);
 
   if (!profile) notFound();
@@ -276,6 +288,14 @@ export default async function ClientDetailPage({ params }: PageProps) {
                 </ul>
               </section>
             )}
+
+            {/* Drip campaigns */}
+            <DripPanel
+              userId={id}
+              sequences={(dripSequences ?? []) as { id: string; name: string; is_active: boolean }[]}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              enrollments={(dripEnrollments ?? []) as any}
+            />
 
           </div>
 
