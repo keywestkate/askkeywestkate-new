@@ -200,7 +200,7 @@ export default async function ListingPage({ params }: PageProps) {
 
                 <div className="mt-8 space-y-3">
                   <a
-                    href={`mailto:Kate@BluescapeRealEstate.com?subject=Interest in ${fullAddress}&body=Hi Kate, I'm interested in the property at ${fullAddress} listed at ${formatPrice(listing.ListPrice)}. Please contact me.`}
+                    href={`mailto:kate@keywestkate.com?subject=Interest in ${fullAddress}&body=Hi Kate, I'm interested in the property at ${fullAddress} listed at ${formatPrice(listing.ListPrice)}. Please contact me.`}
                     className="block w-full bg-ink-950 py-3 text-center text-[0.78rem] uppercase tracking-[0.2em] text-paper transition-opacity hover:opacity-80"
                   >
                     Email Kate about this listing
@@ -214,7 +214,7 @@ export default async function ListingPage({ params }: PageProps) {
                 </div>
 
                 <p className="mt-5 text-[0.7rem] text-ink-400 leading-relaxed">
-                  Listing courtesy of {listing.ListOfficeName ?? "Bluescape Real Estate"}. Information deemed reliable but not guaranteed.
+                  Listing courtesy of {listing.ListOfficeName ?? "Coastal Collection"}. Information deemed reliable but not guaranteed.
                 </p>
               </div>
             </div>

@@ -25,7 +25,7 @@ export default function Contact() {
         }
         metaRight={
           <>
-            Bluescape Real Estate
+            Coastal Collection
             <br />
             Key West · Florida Keys
           </>
@@ -57,10 +57,10 @@ export default function Contact() {
               <div>
                 <div className="eyebrow">Email</div>
                 <a
-                  href="mailto:Kate@BluescapeRealEstate.com"
+                  href="mailto:kate@keywestkate.com"
                   className="mt-4 block font-display text-[clamp(1rem,1.4vw,1.35rem)] leading-tight tracking-tight text-ink-950 hover:text-gulf-700"
                 >
-                  Kate@BluescapeRealEstate.com
+                  kate@keywestkate.com
                 </a>
               </div>
               <div>
@@ -77,7 +77,7 @@ export default function Contact() {
               <div>
                 <div className="eyebrow">Office</div>
                 <p className="mt-4 text-base leading-relaxed text-ink-800">
-                  Bluescape Real Estate
+                  Coastal Collection
                   <br />
                   22976 Overseas Hwy
                   <br />

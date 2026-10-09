@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s · Kate Baldwin",
   },
   description:
-    "Luxury waterfront real estate in Key West and the Florida Keys. Homes on the water, boating, fishing, and life on a sand bar — Kate Baldwin, Bluescape Real Estate.",
+    "Luxury waterfront real estate in Key West and the Florida Keys. Homes on the water, boating, fishing, and life on a sand bar — Kate Baldwin, Coastal Collection.",
   openGraph: {
     title: "Kate Baldwin — Selling a Lifestyle",
     description:

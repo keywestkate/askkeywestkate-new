@@ -27,10 +27,10 @@ export function ContactBlock({
             305.240.7828
           </a>
           <a
-            href="mailto:Kate@BluescapeRealEstate.com"
+            href="mailto:kate@keywestkate.com"
             className="text-sm text-paper-warm hover:text-paper"
           >
-            Kate@BluescapeRealEstate.com
+            kate@keywestkate.com
           </a>
           <Link
             href="/contact"

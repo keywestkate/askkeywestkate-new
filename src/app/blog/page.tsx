@@ -41,7 +41,7 @@ export default async function Blog() {
           <>
             Written by Kate Baldwin
             <br />
-            Bluescape Real Estate
+            Coastal Collection
           </>
         }
         title={

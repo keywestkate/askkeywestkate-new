@@ -104,7 +104,7 @@ export default function Home() {
             {[
               { label: "Market", value: "Florida Keys Market" },
               { label: "Niche", value: "Waterfront · History · Island Life" },
-              { label: "Brokerage", value: "Bluescape Real Estate" },
+              { label: "Brokerage", value: "Coastal Collection" },
               { label: "Promise", value: "Selling a lifestyle" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-1.5">
@@ -322,10 +322,10 @@ export default function Home() {
               305.240.7828
             </a>
             <a
-              href="mailto:Kate@BluescapeRealEstate.com"
+              href="mailto:kate@keywestkate.com"
               className="text-sm text-paper-warm hover:text-paper"
             >
-              Kate@BluescapeRealEstate.com
+              kate@keywestkate.com
             </a>
             <Link
               href="/contact"

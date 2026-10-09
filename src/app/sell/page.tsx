@@ -71,7 +71,7 @@ export default function Sell() {
           <>
             Kate Baldwin
             <br />
-            Bluescape Real Estate
+            Coastal Collection
           </>
         }
         title={
