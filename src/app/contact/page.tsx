@@ -25,7 +25,7 @@ export default function Contact() {
         }
         metaRight={
           <>
-            Coastal Collection
+            Coastal Collection Real Estate
             <br />
             Key West · Florida Keys
           </>
@@ -77,7 +77,7 @@ export default function Contact() {
               <div>
                 <div className="eyebrow">Office</div>
                 <p className="mt-4 text-base leading-relaxed text-ink-800">
-                  Coastal Collection
+                  Coastal Collection Real Estate
                   <br />
                   22976 Overseas Hwy
                   <br />

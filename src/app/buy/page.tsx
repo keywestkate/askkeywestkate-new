@@ -16,7 +16,7 @@ const HERO_PHOTO = `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate
 export const metadata: Metadata = {
   title: "Buy a Home in the Keys",
   description:
-    "Waterfront, canal, and oceanfront homes across Key West and the Florida Keys. Curated by Kate Baldwin of Coastal Collection.",
+    "Waterfront, canal, and oceanfront homes across Key West and the Florida Keys. Curated by Kate Baldwin of Coastal Collection Real Estate.",
 };
 
 const COLLECTIONS = [
@@ -106,7 +106,7 @@ export default async function Buy({ searchParams }: PageProps) {
           <>
             Curated by Kate Baldwin
             <br />
-            Coastal Collection
+            Coastal Collection Real Estate
           </>
         }
         title={

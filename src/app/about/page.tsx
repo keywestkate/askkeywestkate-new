@@ -13,7 +13,7 @@ const KATE_PORTRAIT = "/images/kate/kate-baldwin-bio-real-estate.png";
 export const metadata: Metadata = {
   title: "About Kate",
   description:
-    "Kate Baldwin — Luxury Real Estate Agent with Coastal Collection in Key West and the Florida Keys. I live the life I sell.",
+    "Kate Baldwin — Luxury Real Estate Agent with Coastal Collection Real Estate in Key West and the Florida Keys. I live the life I sell.",
 };
 
 const VALUES = [
@@ -63,7 +63,7 @@ export default function About() {
         }
         metaRight={
           <>
-            Coastal Collection
+            Coastal Collection Real Estate
             <br />
             FL #SL3428748
           </>
@@ -124,7 +124,7 @@ export default function About() {
                 into the luxury market: <strong>41 closings and a career volume
                 exceeding $43.5 million</strong>, with an average transaction
                 now exceeding $1.1M. I currently serve as a Luxury Specialist at{" "}
-                <strong>Coastal Collection</strong>, focusing on high-tier
+                <strong>Coastal Collection Real Estate</strong>, focusing on high-tier
                 waterfront estates and lifestyle properties from Key West to
                 Marathon.
               </p>
@@ -138,7 +138,7 @@ export default function About() {
                 they were supposed to.
               </p>
               <p>
-                Before Coastal Collection, I built my foundation at{" "}
+                Before Coastal Collection Real Estate, I built my foundation at{" "}
                 <strong>Berkshire Hathaway HomeServices (Knight &amp; Gardner)</strong>,
                 where I developed the data-driven negotiation skills and
                 referral network that define my practice today. Every deal I

@@ -214,7 +214,7 @@ export default async function ListingPage({ params }: PageProps) {
                 </div>
 
                 <p className="mt-5 text-[0.7rem] text-ink-400 leading-relaxed">
-                  Listing courtesy of {listing.ListOfficeName ?? "Coastal Collection"}. Information deemed reliable but not guaranteed.
+                  Listing courtesy of {listing.ListOfficeName ?? "Coastal Collection Real Estate"}. Information deemed reliable but not guaranteed.
                 </p>
               </div>
             </div>

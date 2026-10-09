@@ -104,7 +104,7 @@ export default function Home() {
             {[
               { label: "Market", value: "Florida Keys Market" },
               { label: "Niche", value: "Waterfront · History · Island Life" },
-              { label: "Brokerage", value: "Coastal Collection" },
+              { label: "Brokerage", value: "Coastal Collection Real Estate" },
               { label: "Promise", value: "Selling a lifestyle" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-1.5">

@@ -71,7 +71,7 @@ export default function Sell() {
           <>
             Kate Baldwin
             <br />
-            Coastal Collection
+            Coastal Collection Real Estate
           </>
         }
         title={

@@ -10,7 +10,7 @@ export function Footer() {
               Kate Baldwin
             </div>
             <div className="mt-3 text-[0.68rem] uppercase tracking-[0.3em] text-ink-500">
-              Luxury Real Estate · Coastal Collection · Key West
+              Coastal Collection Real Estate · Key West
             </div>
             <p className="mt-10 max-w-md text-base leading-relaxed text-ink-800">
               Selling a lifestyle in Key West and the Florida Keys — homes on
@@ -61,7 +61,7 @@ export function Footer() {
 
         <div className="mt-20 flex flex-col gap-4 border-t border-ink-200 pt-8 text-[0.72rem] uppercase tracking-[0.18em] text-ink-500 md:flex-row md:items-center md:justify-between">
           <div>
-            © {new Date().getFullYear()} Kate Baldwin · Coastal Collection
+            © {new Date().getFullYear()} Kate Baldwin · Coastal Collection Real Estate
             · FL #SL3428748
           </div>
           <div className="flex items-center gap-6 md:justify-end">
