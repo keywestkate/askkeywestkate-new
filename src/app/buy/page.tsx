@@ -6,9 +6,8 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { ContactBlock } from "@/components/ContactBlock";
 import { PortalCTA } from "@/components/PortalCTA";
-import { ListingCard } from "@/components/ListingCard";
-import { ListingFilters } from "@/components/ListingFilters";
-import { getListings, type ListingSearchParams } from "@/lib/spark";
+const SEARCH_URL = "https://kate.buythekeys.com/results-gallery/?status=A";
+const MAP_URL = "https://kate.buythekeys.com/results-map/?status=A";
 
 const WATERFRONT = "/images/lifestyle/waterfront";
 const HERO_PHOTO = `${WATERFRONT}/Key-west-florida-keys-kate-baldwin-real-estate-ocean-boat-houses-5.jpg`;
@@ -50,46 +49,7 @@ const COLLECTIONS = [
   },
 ];
 
-interface PageProps {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}
-
-function sp(val: string | string[] | undefined): string | undefined {
-  return Array.isArray(val) ? val[0] : val;
-}
-
-export default async function Buy({ searchParams }: PageProps) {
-  const params = await searchParams;
-
-  const filterParams: ListingSearchParams = {
-    limit: 24,
-    status: "Active",
-  };
-
-  const minPrice = sp(params.minPrice);
-  const maxPrice = sp(params.maxPrice);
-  const minBeds = sp(params.minBeds);
-  const waterfrontType = sp(params.waterfrontType) as ListingSearchParams["waterfrontType"];
-  const hasDockage = sp(params.hasDockage);
-  const minMM = sp(params.minMM);
-  const maxMM = sp(params.maxMM);
-  const rentalsAllowed = sp(params.rentalsAllowed);
-  const hasPool = sp(params.hasPool);
-
-  if (minPrice) filterParams.minPrice = Number(minPrice);
-  if (maxPrice) filterParams.maxPrice = Number(maxPrice);
-  if (minBeds) filterParams.minBeds = Number(minBeds);
-  if (waterfrontType) filterParams.waterfrontType = waterfrontType;
-  if (hasDockage === "1") filterParams.hasDockage = true;
-  if (minMM) filterParams.minMileMarker = Number(minMM);
-  if (maxMM) filterParams.maxMileMarker = Number(maxMM);
-  if (rentalsAllowed === "1") filterParams.rentalsAllowed = true;
-  if (hasPool === "1") filterParams.hasPool = true;
-
-  const hasFilters = Object.keys(filterParams).length > 2; // beyond limit+status
-
-  const { listings } = await getListings(filterParams);
-
+export default function Buy() {
   return (
     <main className="bg-paper text-ink-950">
       <Nav />
@@ -118,6 +78,15 @@ export default async function Buy({ searchParams }: PageProps) {
         }
         subtitle="Every home in the Keys tells you how you'll spend your Saturday. I show you the ones worth spending them in."
         rightColumn={
+          <div className="flex flex-col gap-6 md:items-end">
+          <a
+            href={SEARCH_URL}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-3 bg-gulf-700 px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-paper transition hover:opacity-80"
+          >
+            Search all Keys listings &rarr;
+          </a>
           <div className="flex flex-wrap gap-3 md:justify-end">
             {["Waterfront", "Canal dockage", "Oceanfront", "Open water", "Pool", "Guest house", "Elevation VE/AE", "STR-eligible"].map((f) => (
               <span
@@ -127,6 +96,7 @@ export default async function Buy({ searchParams }: PageProps) {
                 {f}
               </span>
             ))}
+          </div>
           </div>
         }
       />
@@ -184,57 +154,38 @@ export default async function Buy({ searchParams }: PageProps) {
         </div>
       </section>
 
-      {/* LIVE LISTINGS */}
+      {/* SEARCH LISTINGS */}
       <section className="bg-paper-soft px-8 py-28 md:px-12 md:py-36">
-        <div className="mx-auto max-w-[1600px]">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <div className="max-w-xl">
-              <div className="eyebrow">Currently on market</div>
-              <h2 className="mt-6 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[0.95] tracking-[-0.035em] text-ink-950">
-                This week&rsquo;s shortlist.
-              </h2>
-            </div>
-            <span className="stat-label text-ink-500">
-              {listings.length} listing{listings.length !== 1 ? "s" : ""}
-            </span>
+        <div className="mx-auto flex max-w-[1600px] flex-col items-start justify-between gap-10 md:flex-row md:items-end">
+          <div className="max-w-xl">
+            <div className="eyebrow">Currently on market</div>
+            <h2 className="mt-6 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[0.95] tracking-[-0.035em] text-ink-950">
+              Search every home in the Keys.
+            </h2>
+            <p className="mt-6 text-[0.98rem] leading-relaxed text-ink-800">
+              Every active MLS listing from Key West to Key Largo, updated
+              daily. Save favorites and get new listings sent to you as they
+              hit the market.
+            </p>
           </div>
-
-          {/* Filters */}
-          <div className="mt-10">
-            <ListingFilters currentParams={params} />
+          <div className="flex flex-wrap gap-4">
+            <a
+              href={SEARCH_URL}
+              target="_blank"
+              rel="noopener"
+              className="inline-block bg-ink-950 px-8 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-paper hover:opacity-80"
+            >
+              Search listings &rarr;
+            </a>
+            <a
+              href={MAP_URL}
+              target="_blank"
+              rel="noopener"
+              className="inline-block border border-ink-950 px-8 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 hover:opacity-60"
+            >
+              Search by map
+            </a>
           </div>
-
-          {listings.length > 0 ? (
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-              {listings.map((listing, i) => (
-                <ListingCard key={listing.ListingKey} listing={listing} index={i} />
-              ))}
-            </div>
-          ) : (
-            <div className="mt-12 rounded-lg border border-ink-200 bg-paper px-8 py-16 text-center">
-              <p className="text-ink-500">
-                {hasFilters
-                  ? "No listings match your filters. Try adjusting your search."
-                  : "Check back soon — new listings are updated daily."}
-              </p>
-              <div className="mt-6 flex justify-center gap-4">
-                {hasFilters && (
-                  <Link
-                    href="/buy"
-                    className="inline-block border border-ink-950 px-8 py-3 text-[0.78rem] uppercase tracking-[0.2em] text-ink-950 hover:opacity-60"
-                  >
-                    Clear filters
-                  </Link>
-                )}
-                <Link
-                  href="/contact"
-                  className="inline-block bg-ink-950 px-8 py-3 text-[0.78rem] uppercase tracking-[0.2em] text-paper hover:opacity-80"
-                >
-                  Tell me what you&rsquo;re looking for &rarr;
-                </Link>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 

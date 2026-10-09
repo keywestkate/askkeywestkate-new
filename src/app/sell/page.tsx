@@ -84,15 +84,17 @@ export default function Sell() {
         subtitle="A listing is a transaction. A story is what sells. I price carefully, market quietly when it helps, and tell the story of your home so the right buyer recognizes it immediately."
         rightColumn={
           <div className="flex flex-col gap-3 md:items-end">
-            <Link
-              href="/contact"
+            <a
+              href="https://kate.buythekeys.com/sell/"
+              target="_blank"
+              rel="noopener"
               className="inline-flex items-center gap-3 bg-gulf-700 px-7 py-4 text-[0.78rem] uppercase tracking-[0.2em] text-paper transition hover:opacity-80"
             >
-              Request a valuation &rarr;
+              What&rsquo;s my home worth? &rarr;
+            </a>
+            <Link href="/contact" className="stat-label text-ink-500 hover:text-ink-950">
+              Or talk to Kate directly
             </Link>
-            <span className="stat-label text-ink-500">
-              Typically within 48 hours
-            </span>
           </div>
         }
       />
